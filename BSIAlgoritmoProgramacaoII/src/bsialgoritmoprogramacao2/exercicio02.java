@@ -4,18 +4,22 @@
  * and open the template in the editor.
  */
 package bsialgoritmoprogramacao2;
+
 import java.util.Scanner;
+
 /**
  *
  * @author gabry
  */
-public class BsiAlgoritmoProgramacao2 {
-
-    /**
-     * @param args the command line arguments
-     */
+public class exercicio02 {
     public static void main(String[] args) {
-        System.out.println("Oi");
+        Scanner src = new Scanner(System.in);
+        
+        int numb = 0;
+        
+        while(numb != 42) {
+            System.out.println("Digite um numero:");
+            numb = src.nextInt();
+        }
     }
-    
 }
