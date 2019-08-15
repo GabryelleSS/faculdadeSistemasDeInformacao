@@ -9,14 +9,8 @@ package Aula02;
  *
  * @author gabryelle.ssantos
  */
-public class Exercicio04 {
+public class Exercicio06 {
     public static void main(String[] args) {
-        int hex = 0x2a;
-        int binario = 00101010;
-        int oct = 52;
         
-        System.out.printf("%d", hex);
-        System.out.printf("%d %n", binario);
-        System.out.printf("%d %n", oct);
-    }   
+    }         
 }

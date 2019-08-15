@@ -9,14 +9,11 @@ package Aula02;
  *
  * @author gabryelle.ssantos
  */
-public class Exercicio04 {
+public class Exercicio05 {
     public static void main(String[] args) {
-        int hex = 0x2a;
-        int binario = 00101010;
-        int oct = 52;
+        String frase = "Roma me tem amor";
+        int tamanhoFrase = frase.length();
         
-        System.out.printf("%d", hex);
-        System.out.printf("%d %n", binario);
-        System.out.printf("%d %n", oct);
-    }   
+        System.out.println(tamanhoFrase);
+    }       
 }
