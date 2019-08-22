@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="294.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="br.senac.javafxapp.tela.TelaController">
+   <children>
+      <Button layoutX="250.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnDivisao" prefHeight="39.0" prefWidth="43.0" text="/" />
+      <TextField fx:id="campoResultado" layoutY="-1.0" prefHeight="47.0" prefWidth="294.0" />
+      <Button layoutX="250.0" layoutY="146.0" mnemonicParsing="false" onAction="#btnMultiplicacao" prefHeight="39.0" prefWidth="43.0" text="X" />
+      <Button layoutX="250.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnAdicao" prefHeight="39.0" prefWidth="43.0" text="+" />
+      <Button layoutX="250.0" layoutY="228.0" mnemonicParsing="false" onAction="#btnSubtracao" prefHeight="39.0" prefWidth="43.0" text="-" />
+      <Button layoutX="158.0" layoutY="228.0" mnemonicParsing="false" onAction="#btnIgual" prefHeight="39.0" prefWidth="92.0" text="=" />
+      <Button layoutY="228.0" mnemonicParsing="false" onAction="#btnClear" prefHeight="39.0" prefWidth="159.0" text="Clear" />
+      <TextField fx:id="campoValorA" layoutY="55.0" prefHeight="39.0" prefWidth="145.0" />
+      <TextField fx:id="campoValorB" layoutX="148.0" layoutY="55.0" prefHeight="39.0" prefWidth="145.0" />
+   </children>
+</AnchorPane>

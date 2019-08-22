@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.senac.javafxapp2.telas.TelaTesteController">
+   <children>
+      <Label fx:id="lblTextModification" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="175.0" text="Eu sou uma Label" textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="460.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnModification" text="Clique aqui" />
+      <TitledPane fx:id="painelOpenClose" expanded="false" layoutX="14.0" layoutY="97.0" text="Estou fechado">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </TitledPane>
+      <Button layoutX="460.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnOpenClose" style="-fx-border-color: #5FA2F5; -fx-background-color: #fff;" styleClass="-fx-background-color" text="Clique aqui" />
+   </children>
+</AnchorPane>
