@@ -1,14 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Aula03;
 
-/**
- *
- * @author gabryelle.ssantos
- */
+import java.util.Random;
+
 public class Exercicio05 {
-    
+    public static void main(String[] args) {
+        int linhas = 10;
+        int colunas = 10;
+        Random numbAleatorio = new Random();
+
+        int[][] minhaMatriz = new int [linhas][colunas];
+
+        for(int i = 0; i < colunas; i++) {
+            for(int j = 0; i < linhas; j++) {
+            }
+        }
+    }
 }
