@@ -3,7 +3,7 @@ package Aula03;
 import java.util.Random;
 
 public class Exercicio01 {
-    
+    public static void main(String [] args) {
         int meuVetor = 10;
         
         int[] vetor = new int[meuVetor];

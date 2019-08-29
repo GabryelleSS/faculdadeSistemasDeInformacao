@@ -79,6 +79,7 @@ public class TelaTesteController {
         }
     }
     
+    @FXML
     private void initialize() {
         filmes.getItems().add("Star Wars");
         filmes.getItems().add("Harry Potter");
