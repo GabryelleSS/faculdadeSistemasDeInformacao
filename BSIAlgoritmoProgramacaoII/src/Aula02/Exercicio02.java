@@ -5,6 +5,7 @@
  */
 package Aula02;
 
+<<<<<<< HEAD
 import java.util.Scanner;
 
 /**
@@ -22,5 +23,17 @@ public class Exercicio02 {
             number = src.nextInt();
         }
         
+=======
+/**
+ *
+ * @author gabryelle.ssantos
+ */
+public class Exercicio02 {
+    public static void main(String[] args) {
+        double number = 1234.5678901;
+        float conversaro = (float)number;
+        
+        System.out.println(conversaro);
+>>>>>>> 2f85e427f9c2e343928b18ec61f5e4c2dc446098
     }
 }

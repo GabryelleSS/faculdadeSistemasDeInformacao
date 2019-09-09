@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.senac.javafxapp2.telas.TelaTesteController">
+   <children>
+      <TextField fx:id="txtValor1" layoutX="14.0" layoutY="14.0" />
+      <TextField fx:id="txtValor2" layoutX="226.0" layoutY="14.0" />
+      <TextField fx:id="nomeFilme" layoutX="355.0" layoutY="200.0" />
+      <Button layoutX="214.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnMudaTexto" prefHeight="25.0" prefWidth="173.0" text="Button" />
+      <CheckBox fx:id="checkboxUm" layoutX="14.0" layoutY="129.0" mnemonicParsing="false" onAction="#mudarCheckBoxUm" text="CheckBox" />
+      <CheckBox fx:id="checkboxDois" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" onAction="#mudarCheckBoxDois" text="CheckBox" />
+      <RadioButton fx:id="radioButtonUm" layoutX="14.0" layoutY="298.0" mnemonicParsing="false" selected="true" text="São Paulo">
+         <toggleGroup>
+            <ToggleGroup fx:id="estados" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioButtonDois" layoutX="14.0" layoutY="331.0" mnemonicParsing="false" text="Santa Catarina" toggleGroup="$estados" />
+      <Label fx:id="lblnomeEstado" layoutX="14.0" layoutY="265.0" text="São Paulo" />
+      <Button layoutX="138.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnMudaEstado" text="Clique aqui" />
+      <ComboBox fx:id="filmes" layoutX="300.0" layoutY="158.0" prefWidth="150.0" promptText="Selecione um filme" />
+      <Button layoutX="481.0" layoutY="158.0" mnemonicParsing="false" onAction="#btnMudaFilme" text="Clique aqui" />
+      <DatePicker fx:id="date" layoutX="288.0" layoutY="327.0" />
+      <Button layoutX="504.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnSelecionaAData" text="Button" />
+   </children>
+</AnchorPane>

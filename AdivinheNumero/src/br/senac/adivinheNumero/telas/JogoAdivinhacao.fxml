@@ -42,25 +42,23 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Pane layoutX="418.0" layoutY="94.0" prefHeight="147.0" prefWidth="152.0" style="-fx-background-color: #D67000; -fx-border-radius: 5px;">
-               <children>
-                  <Label fx:id="vitoria" layoutX="14.0" layoutY="104.0" prefHeight="30.0" prefWidth="130.0">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children></Pane>
-            <Button layoutX="418.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnGuessNumber" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #D67000;" text="Adivinhar" textFill="WHITE" />
+            <Button fx:id="btnGuesseNumbers" layoutX="418.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnGuessNumber" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #D67000;" text="Adivinhar" textFill="WHITE" />
             <Label fx:id="totalChances" layoutX="149.0" layoutY="319.0" text="5" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="attempts" layoutX="149.0" layoutY="349.0" text="0" textFill="WHITE">
+            <Label fx:id="attempts" layoutX="149.0" layoutY="356.0" text="0" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
+            <Text fx:id="vitoria" layoutX="407.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="vitoria" fill="WHITE" layoutX="11.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vamos começar!" wrappingWidth="345.89453125">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>
