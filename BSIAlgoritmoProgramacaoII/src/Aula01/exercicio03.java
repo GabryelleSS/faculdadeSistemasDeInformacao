@@ -3,23 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bsialgoritmoprogramacao2;
-
-import java.util.Scanner;
+package Aula01;
 
 /**
  *
  * @author gabry
  */
-public class exercicio02 {
+public class exercicio03 {
     public static void main(String[] args) {
-        Scanner src = new Scanner(System.in);
         
-        int numb = 0;
         
-        while(numb != 42) {
-            System.out.println("Digite um numero:");
-            numb = src.nextInt();
+        for(int i = 0; i < 100; i++) {
+            int valor = (int) (Math.random() * 101);
+            System.out.println(valor);
         }
     }
 }
