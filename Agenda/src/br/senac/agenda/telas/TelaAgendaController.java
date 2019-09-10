@@ -23,9 +23,9 @@ public class TelaAgendaController {
     @FXML
     private TableView<Contato> tableContats;
     @FXML
-    private TableColumn<Contato, String> tableName;
+    private TableColumn<String, String> tableName;
     @FXML
-    private TableColumn<Contato, String> tableTelephone;
+    private TableColumn<String, String> tableTelephone;
     
     @FXML
     public void initialize() {
@@ -33,13 +33,14 @@ public class TelaAgendaController {
                 new PropertyValueFactory("name")
         );
         
-        tableTelephone.setCellFactory(
+        tableTelephone.setCellValueFactory(
                 new PropertyValueFactory("telephone")
         );
         
         tableContats.setItems(
                 FXCollections.observableArrayList(listaContato)
         );
+        
     }
 
     @FXML

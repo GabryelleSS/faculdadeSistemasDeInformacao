@@ -17,6 +17,10 @@ public class JogoAdivnhacao extends Application {
         Scene scene = new Scene(telaJogoAdivinhacao);
         
         stage.setScene(scene);
+        stage.setMaxHeight(400);
+        stage.setMaxWidth(600);
+        stage.setMinHeight(400);
+        stage.setMinWidth(600);
         stage.show();
     }
 }

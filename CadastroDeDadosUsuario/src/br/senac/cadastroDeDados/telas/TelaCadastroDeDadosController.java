@@ -63,13 +63,13 @@ public class TelaCadastroDeDadosController {
                 new PropertyValueFactory("name")
         );
         
-        tableAddress.setCellFactory(
+        tableAddress.setCellValueFactory(
                 new PropertyValueFactory("telephone")
         );
         
-        tablePhone.setItems(
-                FXCollections.observableArrayList(tableDatas)
-        );
+//        tablePhone.setItems(
+//                FXCollections.observableArrayList(tableDatas)
+//        );
     }
 
 }

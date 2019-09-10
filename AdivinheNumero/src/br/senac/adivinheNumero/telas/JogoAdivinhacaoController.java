@@ -34,21 +34,21 @@ public class JogoAdivinhacaoController {
             lblAttempts += 1;
             String lblTotalAttempts = Integer.toString(lblAttempts);
             attempts.setText(lblTotalAttempts);
-
+            5System.out.println(numeroGerado);
             if(lblTotalChances > 0) {
                 lblTotalChances -= 1;
 
                 String lblTotalString = Integer.toString(lblTotalChances);
                 totalChances.setText(lblTotalString);
-
-                if(lblTotalChances == 0) {
+                
+                if(numeroGerado == numeroDigitado && lblTotalChances > 0) {
+                    vitoria.setText("Voce ganhou!");
+                }
+                else if(lblTotalChances == 0 && numeroGerado != numeroDigitado) {
                     vitoria.setText("Voce perdeu! O número que pensei foi: " + numeroGerado);
                     Boolean btnGameOver = Boolean.getBoolean(btnGuesseNumbers.getText());
                     btnGameOver = false;
                     System.out.println(btnGameOver);
-                } 
-                else {
-                    vitoria.setText("Voce ganhou!");
                 }
             }
         }
@@ -66,4 +66,6 @@ public class JogoAdivinhacaoController {
     }
     
 }
+
+// System.exit(0);
 
