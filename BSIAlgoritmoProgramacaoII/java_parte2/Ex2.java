@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Aula01;
+package java_parte2;
 
 /**
  *
- * @author gabry
+ * @author dionathan.nakamura
  */
-public class exercicio05 {
-    
+public class Ex2 {
+    public static void exercicio() {
+        float x;
+        x = (float) 1234.5678901;
+        System.out.println(x);
+    }
 }
