@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="AdivinheNumero.jnlp">
+  <information>
+    <title>AdivinheNumero</title>
+    <vendor>gabry</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="AdivinheNumero.jar" size="879655" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="AdivinheNumero" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="br.senac.adivinheNumero.aplicacao.JogoAdivnhacao"  name="AdivinheNumero" />
+  <update check="always"/>
+</jnlp>

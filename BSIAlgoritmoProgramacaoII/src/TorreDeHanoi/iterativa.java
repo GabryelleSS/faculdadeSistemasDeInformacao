@@ -19,7 +19,6 @@ public class iterativa {
         int quantidadeMinima;
         
         quantidadeMinima = (int)Math.pow(2, numeroDeDiscos) - 1;
-//        System.out.println(quantidadeMinima);
         
         torreDeHanoiIterativa(numeroDeDiscos, quantidadeMinima);
     }
@@ -28,6 +27,7 @@ public class iterativa {
         int pinoOrigem = 1;
         int pinoAuxiliar = 2;
         int pinoDestino = 3;
+        
         int indexPar = 0;
         int indexImpar = 0;
         
