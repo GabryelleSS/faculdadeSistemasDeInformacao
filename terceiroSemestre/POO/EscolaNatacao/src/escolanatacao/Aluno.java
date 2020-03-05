@@ -25,7 +25,7 @@ public class Aluno {
      *
      */
     
-    private String nome;
+    private String nome ;
     private char sexo;
     private float altura;
     private float peso;
