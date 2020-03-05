@@ -4,6 +4,27 @@ import java.util.Scanner;
 
 public class Aluno {
     
+    /**
+     * Classes: Aluno
+     * Metodos: 
+     *  - cadastrar alunos
+     *      - metodo sem retorno, 
+     *      - deve popular as variaveis privadas via teclado.
+     *      - deve executar o metodo do relatorio.
+     *      - exibe no console o retorno do relatorio.
+     *  - caclular peso ideal
+     *      - metodo com retorno do tipo float.
+     *      - utiliza a altura e o sexo.
+     *      - cada sexo deve ter uma formula diferente para calcular o peso ideal.
+     *  - calcular idade 
+     *      - utiliza o ano de nascimento.
+     *      - faz um calculo do ano atual subtraindo a idade.
+     *  - relatorio.
+     *      - retorna uma string.
+     *      - utiliza todas as variaveis privadas que estao populadas.
+     *
+     */
+    
     private String nome;
     private char sexo;
     private float altura;
@@ -35,9 +56,6 @@ public class Aluno {
         scanner.nextLine();
         
         System.out.println(relatorio());
-        
-//        float pesoIdeal = calcularPesoIdeal();
-//        System.out.println("O peso ideal é " + pesoIdeal);
     }
     
     float calcularPesoIdeal() {
