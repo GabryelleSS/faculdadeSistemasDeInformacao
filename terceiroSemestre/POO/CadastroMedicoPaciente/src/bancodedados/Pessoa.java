@@ -5,16 +5,16 @@ public class Pessoa {
     private String cpf;
     private Endereco endereco;
     
-    public Pessoa(String nome, String cpf, String rua, String numero, String cidade, String estado) {
+    public Pessoa(String nome, String cpf, String rua, String numero, String cep, String cidade, String estado) {
         this.nome = nome;
         this.cpf = cpf;
-        this.endereco = new Endereco(rua, numero, cidade, estado);
+        this.endereco = new Endereco(rua, numero, cep, cidade, estado);
     }
     
     public void info() {
         System.out.println("Nome: " + this.getNome());
-        System.out.println("Nome: " + this.getCPF());
-        System.out.println("Nome: " + this.getEndereco().getRua());
+        System.out.println("CPF: " + this.getCPF());
+        System.out.println("Endereço: " + this.getEndereco().getRua());
     }
     
     public String getNome() {
