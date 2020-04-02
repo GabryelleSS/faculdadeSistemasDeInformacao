@@ -31,13 +31,13 @@ public class BancoDeDados {
         int opcao = scanner.nextInt();
         
         if (opcao == 1) {
-            Pessoa paciente = new Paciente(nome, cpf, rua, numero, cep, cidade, estado);
+            Pessoa paciente = new Paciente(nome, cpf, rua, cep, cidade);
             
             addPessoa(paciente);           
             
         }
         else if (opcao == 2) {
-            Pessoa medico = new Medico(nome, cpf, rua, numero, cep, cidade, estado);
+            Pessoa medico = new Medico(nome, cpf, rua, cep, cidade);
             
             addPessoa(medico); 
         }
@@ -75,7 +75,7 @@ public class BancoDeDados {
             System.out.println("Informe o estado da pessoa:");
             estado = scanner.nextLine();
             
-            novaPessoa = new Pessoa(nome, cpf, rua, numero, cep, cidade, estado);
+            novaPessoa = new Pessoa(nome, cpf, rua, cep, cidade);
             pessoas[contador] = novaPessoa;
             
             contador++;
