@@ -1,10 +1,11 @@
 package bancodedados;
 
-public class Medico {
+public class Medico extends Pessoa {
     private String crm;
     private String especialidade;
     
-    public Medico(String crm, String especialidade) {
+    public Medico(String nome, String cpf, String rua, String numero, String cep, String cidade, String estado) {
+        super(nome, cpf, rua, numero, cep, cidade, estado);
         this.crm = crm;
         this.especialidade = especialidade;
     }

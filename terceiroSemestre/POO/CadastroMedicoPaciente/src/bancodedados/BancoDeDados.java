@@ -3,13 +3,21 @@ package bancodedados;
 import java.util.Scanner;
 
 public class BancoDeDados {
-    Scanner scanner = new Scanner(System.in);
+    static private Scanner scanner = new Scanner(System.in);
     
     private static int MAX_PESSOAS = 1000;
     private boolean busca;
-    private Pessoa[] pessoas = new Pessoa[MAX_PESSOAS];
-    private int contador = 0;
-    Pessoa novaPessoa;
+    static private Pessoa[] pessoas = new Pessoa[MAX_PESSOAS];
+    static private int contador = 0;
+    static Pessoa novaPessoa;
+    
+    static String nome;
+    static String cpf;
+    static String rua;
+    static String numero;
+    static String cep;
+    static String cidade;
+    static String estado;
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -23,10 +31,15 @@ public class BancoDeDados {
         int opcao = scanner.nextInt();
         
         if (opcao == 1) {
+            Pessoa paciente = new Paciente(nome, cpf, rua, numero, cep, cidade, estado);
+            
+            addPessoa(paciente);           
             
         }
         else if (opcao == 2) {
+            Pessoa medico = new Medico(nome, cpf, rua, numero, cep, cidade, estado);
             
+            addPessoa(medico); 
         }
         else if (opcao == 3) {
             
@@ -36,36 +49,38 @@ public class BancoDeDados {
         }
     }
     
-    public void addPessoa(Pessoa pessoa) {
+    static public void addPessoa(Pessoa pessoa) {
         if(contador >= pessoas.length) {
             System.out.println("Limite excedido");
         }
         else {
             System.out.println("Informe o nome da pessoa:");
-            String nome = scanner.nextLine();
+            nome = scanner.nextLine();
             
             System.out.println("Informe o cpf da pessoa:");
-            String cpf = scanner.nextLine();
+            cpf = scanner.nextLine();
             
             System.out.println("Informe o rua da pessoa:");
-            String rua = scanner.nextLine();
+            rua = scanner.nextLine();
             
             System.out.println("Informe o numero da pessoa:");
-            String numero = scanner.nextLine();
+            numero = scanner.nextLine();
             
             System.out.println("Informe o cep da pessoa:");
-            String cep = scanner.nextLine();
+            cep = scanner.nextLine();
             
             System.out.println("Informe o cidade da pessoa:");
-            String cidade = scanner.nextLine();
+            cidade = scanner.nextLine();
             
             System.out.println("Informe o estado da pessoa:");
-            String estado = scanner.nextLine();
+            estado = scanner.nextLine();
             
             novaPessoa = new Pessoa(nome, cpf, rua, numero, cep, cidade, estado);
             pessoas[contador] = novaPessoa;
             
             contador++;
+            
+            System.out.println("Cadastro realizado com sucesso!");
         } 
     }
     
