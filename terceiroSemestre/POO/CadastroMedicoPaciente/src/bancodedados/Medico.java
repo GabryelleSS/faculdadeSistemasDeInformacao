@@ -1,21 +1,24 @@
 package bancodedados;
 
 public class Medico extends Pessoa {
-    private String crm;
+    private int crm;
     private String especialidade;
+    private Paciente[] pacientes;
     
-    public Medico(String nome, String cpf, String rua, String cep, String cidade) {
-        super(nome, cpf, rua, cep, cidade);
+    public Medico(String nome, String cpf, String rua) {
+        super(nome, cpf, rua);
         this.crm = crm;
         this.especialidade = especialidade;
     }
     
+    @Override
     public void info() {
+        super.info();
         System.out.println("CRM: " + this.getCrm());
-        System.out.println("Especialidade: " + this.getEspecialidade());
+        System.out.println("Especialização: " + this.getEspecialidade());
     }
     
-    public String getCrm() {
+    public int getCrm() {
         return crm;
     }
     
@@ -23,7 +26,7 @@ public class Medico extends Pessoa {
         return especialidade;
     }
     
-    public void setCrm(String crm) {
+    public void setCrm(int crm) {
         this.crm = crm;
     }
     

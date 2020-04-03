@@ -2,12 +2,10 @@ package bancodedados;
 
 public class Endereco {
     private String rua;
-    private String numero;
     private String cep;
     private String cidade;
-    private String estado;
-    
-    public Endereco(String rua, String cep, String cidade) {
+    //, String cep, String cidade
+    public Endereco(String rua) {
         this.rua = rua;
         this.cep = cep;
         this.cidade = cidade;

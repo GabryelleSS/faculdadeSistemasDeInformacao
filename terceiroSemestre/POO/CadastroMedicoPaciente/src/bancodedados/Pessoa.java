@@ -5,10 +5,10 @@ public class Pessoa {
     private String cpf;
     private Endereco endereco;
     
-    public Pessoa(String nome, String cpf, String rua, String cep, String cidade) {
+    public Pessoa(String nome, String cpf, String rua) {
         this.nome = nome;
         this.cpf = cpf;
-        this.endereco = new Endereco(rua, cep, cidade);
+        this.endereco = new Endereco(rua);
     }
     
     public void info() {
@@ -35,11 +35,6 @@ public class Pessoa {
     
     public void setCPF(String cpf) {
         this.nome = cpf;
-    }
-    
-    public void setEndereco(String endereco) {
-        this.nome = endereco;
-    }
-    
+    }   
     
 }
