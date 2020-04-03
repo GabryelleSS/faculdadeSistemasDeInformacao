@@ -1,14 +1,28 @@
 package bancodedados;
 
+import java.util.Scanner;
+
 public class Medico extends Pessoa {
+    Scanner scanner = new Scanner(System.in);
+    
     private int crm;
     private String especialidade;
     private Paciente[] pacientes;
     
-    public Medico(String nome, String cpf, String rua) {
-        super(nome, cpf, rua);
-        this.crm = crm;
-        this.especialidade = especialidade;
+    @Override
+    public void cadastrar() {
+        System.out.println("===== Cadastro do medico =====");
+        super.cadastrar();
+        
+        super.questionario("Informe o CRM:");;
+        crm = scanner.nextInt();
+        setCrm(crm);
+        
+        scanner.nextLine();
+        
+        super.questionario("Informe a especialidade:");;
+        especialidade = scanner.nextLine();
+        setEspecialidade(especialidade);
     }
     
     @Override

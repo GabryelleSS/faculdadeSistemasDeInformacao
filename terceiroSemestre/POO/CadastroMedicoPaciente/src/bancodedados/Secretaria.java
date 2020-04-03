@@ -1,12 +1,23 @@
 package bancodedados;
 
+import java.util.Scanner;
+
 public class Secretaria extends Pessoa {
+    Scanner scanner = new Scanner(System.in);
     
     private String departamento;
     private int ramal;
     
-    public Secretaria(String nome, String cpf, String rua) {
-        super(nome, cpf, rua);
+    @Override
+    public void cadastrar() {
+        System.out.println("===== Cadastro da secretaria =====");
+        super.cadastrar();
+        
+        super.questionario("Qual é o ramal");
+        ramal = scanner.nextInt();
+        
+        super.questionario("Qual é o departamento");
+        departamento = scanner.nextLine();
     }
     
     @Override

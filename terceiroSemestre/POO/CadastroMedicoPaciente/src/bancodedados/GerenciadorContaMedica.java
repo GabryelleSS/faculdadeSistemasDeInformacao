@@ -2,21 +2,16 @@ package bancodedados;
 
 public class GerenciadorContaMedica {
     public static void main(String[] args) {
-        Pessoa p = new Medico("Carla", "1234", "Rua Abiguaiu, 231");
-        Pessoa p2 = new Paciente("Jose", "8465", "Rua Pinheiros, 8456");
-        Pessoa p3 = new Secretaria("Rodrigo", "51", "Rua Morada, 1");
-        
-        System.out.println("Informação do medico:");
+        Pessoa p = new Medico();
+        p.cadastrar();
         p.info();
         
-        System.out.println("========================");
-        
-        System.out.println("Informação do paciente:");
+        Pessoa p2 = new Paciente();
+        p2.cadastrar();
         p2.info();
         
-        System.out.println("========================");
-        
-        System.out.println("Informação dos funcionarios da secretaria:");
+        Pessoa p3 = new Secretaria();
+        p3.cadastrar();
         p3.info();
     }
 }
