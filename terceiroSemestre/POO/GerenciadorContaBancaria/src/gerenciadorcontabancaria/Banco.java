@@ -3,80 +3,100 @@ package gerenciadorcontabancaria;
 import java.util.Scanner;
 
 public class Banco {
-    private static int QUANT_CLIENTE = 2;
-    private static int QUANT_CONTA = 2;
-    private int indice = 0;
-    
-    private int codigo;
-    
-    private static Cliente[] cliente = new Cliente[QUANT_CLIENTE];
     
     Scanner scanner = new Scanner(System.in);
     
-    void cadastraNovoCliente() {
-        
-        if (indice <= cliente.length) {
-            Cliente novoCliente = new Cliente();
-            novoCliente.cadastrarCliente();
-            
-            cliente[indice] = novoCliente; 
-            indice++;
-        }
-        else {
-            System.out.println("Limite excedido!");
-        }
-        
+    private static final int LIMITE_CADASTRO = 1000;
+    
+    private int codigo;
+    private Cliente[] clientes;
+    private Conta[] contas;
+    private int proximaConta = 1;
+    
+    public Banco() {
+        codigo = 1;
+        clientes = new Cliente[LIMITE_CADASTRO];
+        contas = new Conta[LIMITE_CADASTRO];
     }
     
-    void saqueCliente() {
-        int numeroConta;
-        float valorSaque;
+    public void cadastrar() {
+        Cliente cliente = new Cliente(proximaConta);
+        cliente.cadastrarCliente();
+        clientes[proximaConta - 1] = cliente;
         
-        Cliente novoCliente = new Cliente();
-        int numeroContaCliente = novoCliente.getNumeroConta();
-        
-        System.out.println("==== Saque conta Bancaria =====");
-        System.out.println("Informe o número da conta:");
-        numeroConta = scanner.nextInt();
-        
-        if (numeroConta == numeroContaCliente) {
-            Conta conta = new Conta();
-            
-            System.out.println("Informe o valor que deseja sacar:");
-            valorSaque = scanner.nextFloat();
-            
-            conta.saque(valorSaque);
-            
-        }
-        else {
-            System.out.println("Numero da conta inválida, tente novamente");
-        }
-        
+        Conta conta = new Conta(proximaConta, cliente.getCpf());
+        contas[proximaConta - 1] = conta;
+                
+        proximaConta++;
     }
     
-    void depositoCliente() {
-        int numeroConta;
-        float valorDeposito;
+    public void saque() {
+        System.out.println("Qual é o número da conta");
+        int conta = scanner.nextInt();
         
-        Cliente novoCliente = new Cliente();
-        int numeroContaCliente = novoCliente.getNumeroConta();
+        System.out.println("Qual é o valor do saque");
+        double valorSaque = scanner.nextDouble();
         
-        System.out.println("==== Saque conta Bancaria =====");
-        System.out.println("Informe o número da conta:");
-        numeroConta = scanner.nextInt();
-        
-        if (numeroConta == numeroContaCliente) {
-            Conta conta = new Conta();
+        if(conta < proximaConta) {
+            Conta conta1 = contas[conta - 1];
             
-            System.out.println("Informe o valor que deseja depositar:");
-            valorDeposito = scanner.nextFloat();
-            
-            conta.deposito(valorDeposito);
-            
+            if(conta1.saque(valorSaque)) {
+                System.out.println("Saque efetuado com sucesso.");
+            }
+            else {
+                System.out.println("Saldo insulficiente.");
+            }
         }
         else {
-            System.out.println("Numero da conta inválida, tente novamente");
+            System.out.println("Conta inexistente.");
         }
     }
+    
+    public void deposito() {
+        System.out.println("Qual é o número da conta");
+        int conta = scanner.nextInt();
+        
+        System.out.println("Qual é o valor do deposito");
+        double valorDeposito = scanner.nextDouble();
+        
+        if(conta < proximaConta) {
+            Conta conta1 = contas[conta - 1];
+            
+            if(conta1.deposito(valorDeposito)) {
+                System.out.println("Deposito efetuado com sucesso.");
+            }
+            else {
+                System.out.println("Deposito insulficiente.");
+            }
+        }
+        else {
+            System.out.println("Conta inexistente.");
+        } 
+    }
+    
+    public void transferencia() {
+        System.out.println("Qual é o número da conta de origem");
+        int contaOrigem = scanner.nextInt();
+        System.out.println("Qual é o número da conta de destino");
+        int contaDestino = scanner.nextInt();
+        System.out.println("Qual é o valor da transferencia");
+        double valorDeposito = scanner.nextDouble();
+        
+        if(contaOrigem < proximaConta && contaDestino< proximaConta) {
+            Conta conta1Origem = contas[contaOrigem - 1];
+            Conta conta1Destino = contas[contaDestino - 1];
+            
+            if(conta1Origem.saque(valorDeposito) && conta1Origem.deposito(valorDeposito)) {
+                System.out.println("Deposito efetuado com sucesso.");
+            }
+            else {
+                System.out.println("Deposito insulficiente.");
+            }
+        }
+        else {
+            System.out.println("Conta inexistente.");
+        } 
+    }
+    
     
 }

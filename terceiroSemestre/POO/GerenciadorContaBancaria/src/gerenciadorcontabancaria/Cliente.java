@@ -3,11 +3,16 @@ package gerenciadorcontabancaria;
 import java.util.Scanner;
 
 public class Cliente {
+    
+    Scanner scanner = new Scanner(System.in);
+    
     private String nomeCliente;
     private String cpfCliente;
     private int numeroConta = 1;
     
-    Scanner scanner = new Scanner(System.in);
+    public Cliente(int numeroConta) {
+        this.numeroConta = numeroConta;
+    }
     
     void cadastrarCliente() {
         System.out.println("===== Cadastro de Cliente ====");

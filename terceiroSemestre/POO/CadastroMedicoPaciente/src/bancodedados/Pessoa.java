@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Pessoa {
     Scanner scanner = new Scanner(System.in);
     
-    private String nome;
+    protected String nome;
     private String cpf;
     private Endereco endereco;
     Endereco novoEndereco = new Endereco();
@@ -13,6 +13,7 @@ public class Pessoa {
     public void cadastrar() {
         questionario("Informe o nome:");
         this.nome = scanner.nextLine();
+        
         questionario("Informe o CPF:");
         this.cpf = scanner.nextLine();
         

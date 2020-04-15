@@ -4,31 +4,47 @@ import java.util.Scanner;
 
 public class GerenciadorContaBancaria {
     
+    private static Banco banco = new Banco();
+    
     public static void main(String[] args) {
-        Banco novoCliente = new Banco();
-        int opcao;
         
         Scanner scanner = new Scanner(System.in);
+        int opcao;
         
-        System.out.println("===== Menu =====");
-        System.out.println("Informe o que deseja fazer:");
-        System.out.println("1 - Cadastrar novo cliente");
-        System.out.println("2 - Realizar deposito");
-        System.out.println("3 - Realizar saque bancario");
-        opcao = scanner.nextInt();
+        do {
+            System.out.println("===== Menu =====");
+            
+            System.out.println("1 - Cadastrar novo cliente");
+            System.out.println("2 - Realizar saque");
+            System.out.println("3 - Realizar deposito");
+            System.out.println("4 - Realizar transferência");
+            System.out.println("5 - Sair");
+            
+            System.out.println("Informe o que deseja fazer:");
+            opcao = scanner.nextInt();
+            
+            switch(opcao) {
+                case 1:
+                    banco.cadastrar();
+                    break;
+                case 2:
+                    banco.saque();
+                    break;
+                case 3:
+                    banco.deposito();
+                    break;
+                case 4:
+                    banco.transferencia();
+                    break;
+                case 5:
+                    System.out.println("Obrigada por utilizar os nossos serviços.");
+                    break;
+                default:
+                    System.out.println("Opção inválida, tente novamente.");
+            }
+        }
         
-        if (opcao == 1) {
-            novoCliente.cadastraNovoCliente();
-        }
-        else if (opcao == 2) {
-            novoCliente.depositoCliente();
-        }
-        else if (opcao == 3) {
-            novoCliente.saqueCliente();
-        }
-        else {
-            System.out.println("Falha na comunicação.");
-        }
+        while(opcao != 5);
         
     }
     
