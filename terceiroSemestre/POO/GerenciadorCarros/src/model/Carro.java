@@ -9,8 +9,8 @@ public class Carro extends DadosAdicionaisCarro {
     protected String tipoCarro;
     protected boolean disponibilidadeLocacao;
 
-    public Carro(String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int kilometragem, int tanque) {
-        super(kilometragem, tanque);
+    public Carro(String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int quilometragem, String tanque) {
+        super(quilometragem, tanque);
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;

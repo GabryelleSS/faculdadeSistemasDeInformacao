@@ -1,27 +1,27 @@
 package model;
 
 public class DadosAdicionaisCarro {
-    protected int kilometragem;
-    protected int tanque;
+    protected int quilometragem;
+    protected String tanque;
 
-    public DadosAdicionaisCarro(int kilometragem, int tanque) {
-        this.kilometragem = kilometragem;
+    public DadosAdicionaisCarro(int quilometragem, String tanque) {
+        this.quilometragem = quilometragem;
         this.tanque = tanque;
     }
 
-    public int getKilometragem() {
-        return kilometragem;
+    public int getQuilometragem() {
+        return quilometragem;
     }
 
-    public void setKilometragem(int kilometragem) {
-        this.kilometragem = kilometragem;
+    public void setQuilometragem(int quilometragem) {
+        this.quilometragem = quilometragem;
     }
 
-    public int getTanque() {
+    public String getTanque() {
         return tanque;
     }
 
-    public void setTanque(int tanque) {
+    public void setTanque(String tanque) {
         this.tanque = tanque;
     }
     

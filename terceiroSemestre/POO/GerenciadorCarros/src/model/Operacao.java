@@ -14,8 +14,8 @@ public class Operacao extends Carro {
     protected Date data;
     protected double valor;
 
-    public Operacao(int idOperacao, String tipoOperacao, Carro carro, String data, double valor, String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int kilometragem, int tanque) {
-        super(marca, modelo, ano, placa, tipoCarro, disponibilidadeLocacao, kilometragem, tanque);
+    public Operacao(int idOperacao, String tipoOperacao, Carro carro, String data, double valor, String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int quilometragem, String tanque) {
+        super(marca, modelo, ano, placa, tipoCarro, disponibilidadeLocacao, quilometragem, tanque);
         this.idOperacao = idOperacao;
         this.tipoOperacao = tipoOperacao;
         this.carro = carro;
