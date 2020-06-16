@@ -1,17 +1,22 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import method.GerenciadorDAO;
 import model.Carro;
+import model.DadosAdicionaisCarro;
 
 public class GerenciadorController implements Initializable {
     private int seleciona = 0;
@@ -36,10 +41,23 @@ public class GerenciadorController implements Initializable {
     private Pane containerAluguelCarro;
     @FXML
     private HBox containerBusca;
+    @FXML
+    private TextField fieldPlacaCarro;
+    @FXML
+    private TextField fieldModeloCarro;
+    @FXML
+    private TextField fieldAnoCarro;
+    @FXML
+    private ComboBox<String> fieldTipoCarro;
+    @FXML
+    private TextField fieldKmCarro;
+    @FXML
+    private ComboBox<String> fieldTanqueCarro;
+    @FXML
+    private TextField fieldValorCarro;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         btnAdd.setVisible(false);
         containerCadastroCarro.setVisible(false);
         containerVendaCarro.setVisible(false);
@@ -63,6 +81,9 @@ public class GerenciadorController implements Initializable {
         btnAdd.setVisible(true);
         
         containerCadastroCarro.setVisible(true);
+        
+        itensCamposTipoCarro();
+        itensCamposTanque();
     }
 
     private void vendaCarro() {
@@ -225,5 +246,80 @@ public class GerenciadorController implements Initializable {
         colTanque.setPrefWidth(100);
         
         root.getChildren().add(tabelaCarroVendido);
+    }
+    
+    private void itensCamposTipoCarro() {
+        fieldTipoCarro.getItems().addAll(
+            "Econômico",
+            "Sedan",
+            "SUV",
+            "Prêmium"
+        );
+    }
+    
+    private void itensCamposTanque() {
+        fieldTanqueCarro.getItems().addAll(
+            "Vazio",
+            "Cheio",
+            "Metade",
+            "Um_quarto",
+            "Tres_quarto"
+        );
+    }
+    
+    private boolean verificaCamposVazios() {
+        ArrayList<String> Campos = new ArrayList();
+        
+        Campos.add(fieldPlacaCarro.getText());
+        Campos.add(fieldModeloCarro.getText());
+        Campos.add(fieldAnoCarro.getText());
+        Campos.add(fieldTipoCarro.getValue());
+        Campos.add(fieldKmCarro.getText());
+        Campos.add(fieldTanqueCarro.getValue());
+        Campos.add(fieldValorCarro.getText());
+        
+        for(String campo : Campos) {
+            if (campo.trim().isEmpty()) {
+                System.out.println("Campo vazio");
+                
+                return false;
+            } else {
+                return true;
+            }
+        }
+        
+        return true;
+    }
+
+    @FXML
+    private void btnLimparCampos(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnSalvarCadastroCarro(ActionEvent event) {
+        
+        if (verificaCamposVazios()) {
+            
+            DadosAdicionaisCarro dadosAdicionaisCarro = new DadosAdicionaisCarro();
+            
+            dadosAdicionaisCarro.setQuilometragem(Integer.parseInt(fieldKmCarro.getText().trim()));
+            dadosAdicionaisCarro.setTanque(fieldTanqueCarro.getValue().trim());
+            
+            Carro carro = new Carro();
+            
+            carro.setPlaca(fieldPlacaCarro.getText().trim());
+            carro.setModelo(fieldModeloCarro.getText().trim());
+            carro.setAno(Integer.parseInt(fieldAnoCarro.getText().trim()));
+            carro.setTipoCarro(fieldTipoCarro.getValue().trim());
+            carro.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
+            carro.setTanque(dadosAdicionaisCarro.getTanque());
+            
+            GerenciadorDAO gerenciador = new GerenciadorDAO();
+            gerenciador.insertCars(carro);
+            
+        } else {
+            System.out.println("Sou falso");
+        }
+        
     }
 }

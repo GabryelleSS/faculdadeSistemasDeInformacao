@@ -9,6 +9,9 @@ public class DadosAdicionaisCarro {
         this.tanque = tanque;
     }
 
+    public DadosAdicionaisCarro() {
+    }
+
     public int getQuilometragem() {
         return quilometragem;
     }

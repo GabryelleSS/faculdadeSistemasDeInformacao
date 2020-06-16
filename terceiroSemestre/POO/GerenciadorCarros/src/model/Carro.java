@@ -19,6 +19,14 @@ public class Carro extends DadosAdicionaisCarro {
         this.disponibilidadeLocacao = disponibilidadeLocacao;
     }
 
+    public Carro() {
+        
+    }
+
+    public Carro(int quilometragem, String tanque) {
+        super(quilometragem, tanque);
+    }
+
     public String getMarca() {
         return marca;
     }
