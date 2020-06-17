@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -12,6 +15,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -19,7 +23,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="89.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="89.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/icon/icons8-carro-100.png" />
                </image>
@@ -27,7 +31,7 @@
                   <Insets bottom="30.0" />
                </VBox.margin>
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#btnSelecionarCarro" prefHeight="60.0" prefWidth="150.0" text="Carros">
+            <JFXButton onAction="#btnSelecionarCarro" prefHeight="70.0" prefWidth="222.0" text="Carros">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -35,8 +39,12 @@
                      </image>
                   </ImageView>
                </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#btnSelecionaVenda" prefHeight="60.0" prefWidth="150.0" text="Venda">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btnMenu" />
+               </styleClass>
+            </JFXButton>
+            <JFXButton onAction="#btnSelecionaVenda" prefHeight="70.0" prefWidth="178.0" text="Vendas">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,8 +52,12 @@
                      </image>
                   </ImageView>
                </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#btnSelecionaAluguel" prefHeight="60.0" prefWidth="150.0" text="Aluguel">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btnMenu" />
+               </styleClass>
+            </JFXButton>
+            <JFXButton onAction="#btnSelecionaAluguel" prefHeight="70.0" prefWidth="172.0" text="Alugueis">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -53,7 +65,11 @@
                      </image>
                   </ImageView>
                </graphic>
-            </Button>
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btnMenu" />
+               </styleClass>
+            </JFXButton>
          </children>
       </VBox>
       <HBox layoutX="150.0" prefHeight="60.0" prefWidth="650.0">
@@ -69,8 +85,8 @@
             </HBox>
             <HBox fx:id="containerBusca" alignment="CENTER" prefHeight="100.0" prefWidth="325.0">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="318.0" promptText="Pesquisar..." />
-                  <Button mnemonicParsing="false" onAction="#btnPesquisar" prefHeight="36.0" prefWidth="0.0" text=" ">
+                  <JFXTextField focusColor="#1949cc" labelFloat="true" prefHeight="25.0" prefWidth="233.0" promptText="Pesquisar" />
+                  <JFXButton text=" ">
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,9 +95,9 @@
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets left="30.0" right="30.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
-                  </Button>
+                  </JFXButton>
                </children>
             </HBox>
          </children>
@@ -199,12 +215,12 @@
                                  <children>
                                     <HBox alignment="BOTTOM_RIGHT" prefHeight="36.0" prefWidth="399.0">
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#btnLimparCampos" prefWidth="70.0" text="Limpar">
+                                          <Button mnemonicParsing="false" onAction="#btnLimparCampos" prefWidth="70.0" styleClass="btnLimpar" text="Limpar">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button mnemonicParsing="false" onAction="#btnSalvarCadastroCarro" prefWidth="70.0" text="Salvar" />
+                                          <Button mnemonicParsing="false" onAction="#btnSalvarCadastroCarro" prefWidth="70.0" styleClass="btnSalvar" text="Salvar" />
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="10.0" right="75.0" />
@@ -227,19 +243,10 @@
                                  <children>
                                     <VBox prefHeight="99.0" prefWidth="250.0">
                                        <children>
-                                          <Label text="Pesquise a placa">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <TextField prefHeight="25.0" prefWidth="199.0">
-                                                   <HBox.margin>
-                                                      <Insets right="10.0" />
-                                                   </HBox.margin>
-                                                </TextField>
-                                                <Button mnemonicParsing="false" prefHeight="8.0" prefWidth="25.0">
+                                                <JFXTextField fx:id="campoBuscarPlaca" focusColor="#1949cc" labelFloat="true" prefHeight="25.0" prefWidth="304.0" promptText="Pesquisar placa" />
+                                                <JFXButton onAction="#btnPesquisaPlaca" styleClass="btn" text=" ">
                                                    <graphic>
                                                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -247,7 +254,7 @@
                                                          </image>
                                                       </ImageView>
                                                    </graphic>
-                                                </Button>
+                                                </JFXButton>
                                              </children>
                                           </HBox>
                                        </children>
@@ -257,12 +264,21 @@
                                     </VBox>
                                     <VBox prefHeight="211.0" prefWidth="250.0">
                                        <children>
-                                          <TableView prefHeight="214.0" prefWidth="250.0">
-                                            <columns>
-                                              <TableColumn prefWidth="125.0" text="Placa" />
-                                              <TableColumn prefWidth="124.0" text="Modelo" />
-                                            </columns>
-                                          </TableView>
+                                          <JFXTextField fx:id="campoMarca" disable="true" focusColor="#1949cc" promptText="Marca">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="campoModelo" disable="true" focusColor="#1949cc" promptText="Modelo">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="campoAno" disable="true" focusColor="#1949cc" promptText="Ano">
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
@@ -273,32 +289,54 @@
                                     <Insets left="30.0" right="30.0" />
                                  </HBox.margin>
                               </VBox>
-                              <VBox prefHeight="200.0" prefWidth="250.0">
+                              <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="250.0">
                                  <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <VBox alignment="CENTER" prefHeight="67.0" prefWidth="250.0">
                                        <children>
-                                          <Label text="Valor">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField>
-                                             <VBox.margin>
-                                                <Insets top="25.0" />
-                                             </VBox.margin>
-                                          </TextField>
+                                          <JFXTextField focusColor="#1949cc" labelFloat="true" promptText="Insira o valor" />
                                        </children>
                                     </VBox>
-                                    <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="250.0">
+                                    <VBox prefHeight="142.0" prefWidth="250.0">
+                                       <children>
+                                          <JFXTextField fx:id="campoTipoCarro" disable="true" focusColor="#1949cc" promptText="Tipo de carro">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="campoQuilometragem" disable="true" focusColor="#1949cc" promptText="Quilometragem">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="campoTanque" disable="true" focusColor="#1949cc" promptText="Tanque">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_RIGHT" prefHeight="42.0" prefWidth="250.0">
                                        <children>
                                           <HBox alignment="BOTTOM_RIGHT" prefHeight="67.0" prefWidth="250.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefWidth="70.0" text="Limpar">
+                                                <JFXButton buttonType="RAISED" ripplerFill="#6a717c" text="Limpar">
                                                    <HBox.margin>
                                                       <Insets right="20.0" />
                                                    </HBox.margin>
-                                                </Button>
-                                                <Button mnemonicParsing="false" prefWidth="70.0" text="Salvar" />
+                                                   <styleClass>
+                                                      <String fx:value="btnLimpar" />
+                                                      <String fx:value="btn" />
+                                                   </styleClass>
+                                                </JFXButton>
+                                                <JFXButton text="Salvar">
+                                                   <styleClass>
+                                                      <String fx:value="btnSalvar" />
+                                                      <String fx:value="btn" />
+                                                   </styleClass>
+                                                </JFXButton>
                                              </children>
                                           </HBox>
                                        </children>
@@ -318,7 +356,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Pane>
-                  <Pane fx:id="containerAluguelCarro" layoutY="-2.0" prefHeight="330.0" prefWidth="692.0" styleClass="felipe" stylesheets="@../assets/css/gerenciador.css">
+                  <Pane fx:id="containerAluguelCarro" layoutY="-2.0" prefHeight="330.0" prefWidth="692.0" styleClass="fedido" stylesheets="@../assets/css/gerenciador.css">
                      <children>
                         <HBox alignment="CENTER" prefHeight="330.0" prefWidth="702.0">
                            <children>
@@ -449,7 +487,7 @@
             </Pane>
          </children>
       </VBox>
-      <HBox layoutX="150.0" layoutY="60.0" prefHeight="35.0" prefWidth="650.0">
+      <HBox layoutX="150.0" layoutY="60.0" prefHeight="46.0" prefWidth="650.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="325.0">
                <children>
@@ -470,7 +508,10 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefHeight="38.0" prefWidth="0.0" text=" ">
+                  <JFXButton fx:id="btnAdd" onAction="#btnAdd" prefHeight="60.0" prefWidth="13.0" text=" ">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -478,13 +519,11 @@
                            </image>
                         </ImageView>
                      </graphic>
-                     <HBox.margin>
-                        <Insets right="21.0" />
-                     </HBox.margin>
-                  </Button>
+                  </JFXButton>
                </children>
             </HBox>
          </children>
       </HBox>
+      <StackPane fx:id="stackPane" layoutX="317.0" layoutY="160.0" prefHeight="150.0" prefWidth="299.0" />
    </children>
 </AnchorPane>

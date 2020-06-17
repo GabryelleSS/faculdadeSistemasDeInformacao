@@ -14,16 +14,12 @@ public class Operacao extends Carro {
     protected Date data;
     protected double valor;
 
-    public Operacao(int idOperacao, String tipoOperacao, Carro carro, String data, double valor, String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int quilometragem, String tanque) {
+    public Operacao(int idOperacao, String tipoOperacao, Carro carro, Date data, double valor, String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int quilometragem, String tanque) {
         super(marca, modelo, ano, placa, tipoCarro, disponibilidadeLocacao, quilometragem, tanque);
         this.idOperacao = idOperacao;
         this.tipoOperacao = tipoOperacao;
         this.carro = carro;
-        try {
-            this.data = new SimpleDateFormat("dd/mm/yyyy HH:mm").parse(data);
-        } catch (ParseException ex) {
-            Logger.getLogger(Operacao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.data = data;
         this.valor = valor;
     }
 

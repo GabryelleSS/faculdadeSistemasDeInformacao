@@ -3,7 +3,8 @@ package method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import connection.UtilDAO;
-import java.text.SimpleDateFormat;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 import model.Carro;
 import model.Operacao;
 
@@ -37,9 +38,7 @@ public class GerenciadorDAO {
         }
     }
     
-    public void insertOperation(Operacao operacao) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy HH:mm");
-        
+    public boolean insertOperation(Operacao operacao) {
         String sql = "insert into operacao(tipo_operacao, data_hora, valor, quilometragem, tanque, placa) \n" +
             " values(?, ?, ?, ?, ?, ?)";
         
@@ -49,7 +48,7 @@ public class GerenciadorDAO {
             PreparedStatement statement = conexao.prepareStatement(sql);
             
             statement.setString(1, operacao.getTipoOperacao());
-            statement.setDate(2, new java.sql.Date(operacao.getData().getTime()));
+            statement.setTimestamp(2,new Timestamp(System.currentTimeMillis()));
             statement.setDouble(3, operacao.getValor());
             statement.setInt(4, operacao.getQuilometragem());
             statement.setString(5, operacao.getTanque());
@@ -60,8 +59,45 @@ public class GerenciadorDAO {
             
             conexao.close();
             
+            return true;
         } catch(Exception e) {
-            System.out.println("Não foi possivel inserir a operação.");
+            System.out.println("Não foi possivel inserir a COMPRA.");
+            return false;
+        }
+    }
+    
+    public void searchPlaca(Carro carro) {
+        try {
+
+            Connection conexao = UtilDAO.connection();
+            String sql = "SELECT * FROM carro WHERE placa = ?";
+            
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1, carro.getPlaca());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                carro.setPlaca(resultSet.getString("placa"));
+                carro.setMarca(resultSet.getString("marca"));
+                carro.setModelo(resultSet.getString("modelo"));
+                carro.setAno(resultSet.getInt("ano"));
+                carro.setTipoCarro(resultSet.getString("tipo_carro"));
+                carro.setQuilometragem(resultSet.getInt("quilometragem"));
+                carro.setTanque(resultSet.getString("tanque"));
+                carro.setDisponibilidadeLocacao(resultSet.getBoolean("disponibilidade"));
+            } else {
+                carro.setPlaca("");
+            }
+            
+            preparedStatement.close();
+            resultSet.close();
+            conexao.close();
+            
+        } catch(Exception e) {
+            carro.setPlaca("");
+            
+            System.out.println("Não foi possivel BUSCAR O CARRO.");
         }
     }
     

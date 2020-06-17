@@ -1,5 +1,9 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -7,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +22,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import method.GerenciadorDAO;
 import model.Carro;
 import model.DadosAdicionaisCarro;
@@ -61,6 +68,23 @@ public class GerenciadorController implements Initializable {
     private TextField fieldValorCarro;
     @FXML
     private TextField fieldMarcaCarro;
+    @FXML
+    private StackPane stackPane;
+    private JFXTextField campoPlaca;
+    @FXML
+    private JFXTextField campoModelo;
+    @FXML
+    private JFXTextField campoBuscarPlaca;
+    @FXML
+    private JFXTextField campoMarca;
+    @FXML
+    private JFXTextField campoAno;
+    @FXML
+    private JFXTextField campoTipoCarro;
+    @FXML
+    private JFXTextField campoQuilometragem;
+    @FXML
+    private JFXTextField campoTanque;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,6 +92,7 @@ public class GerenciadorController implements Initializable {
         containerCadastroCarro.setVisible(false);
         containerVendaCarro.setVisible(false);
         containerAluguelCarro.setVisible(false);
+        stackPane.setVisible(false);
     }
 
     private void limparPanel() {
@@ -151,10 +176,6 @@ public class GerenciadorController implements Initializable {
         containerBusca.setVisible(true);
     }
 
-    @FXML
-    private void btnPesquisar(ActionEvent event) {
-        
-    }
 
     @FXML
     private void btnAdd(ActionEvent event) {
@@ -314,10 +335,25 @@ public class GerenciadorController implements Initializable {
         limparCampos();
     }
     
-    private Date horaAtual() {
-	Date date = new Date(); 
+    private void mensagemDialog(String header, String body) {
+        stackPane.setVisible(true);
+        JFXDialogLayout content = new JFXDialogLayout();
         
-        return date;
+        content.setHeading(new Text(header));
+        content.setBody(new Text(body));
+        
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+        
+        JFXButton button = new JFXButton("OK");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+        
+        content.setActions(button);
+        
+        dialog.show();
     }
 
     @FXML
@@ -343,7 +379,6 @@ public class GerenciadorController implements Initializable {
             carro.setTanque(dadosAdicionaisCarro.getTanque());
             
             operacao.setTipoOperacao("Compra");
-            operacao.setData(horaAtual());
             operacao.setValor(Double.parseDouble(fieldValorCarro.getText()));
             operacao.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
             operacao.setTanque(dadosAdicionaisCarro.getTanque());
@@ -352,12 +387,39 @@ public class GerenciadorController implements Initializable {
             GerenciadorDAO gerenciador = new GerenciadorDAO();
             gerenciador.insertCars(carro);
             
-            gerenciador.insertOperation(operacao);
+            if (gerenciador.insertOperation(operacao)) {
+                mensagemDialog("Hey!", "Carro cadastrado com sucesso.");
+                limparCampos();
+            } else {
+                mensagemDialog("Ops!", "Não foi possivel cadastrar o novo carro.");
+            }
             
-            limparCampos();
+            
             
         } else {
             System.out.println("Sou falso");
+        }
+        
+    }
+
+    @FXML
+    private void btnPesquisaPlaca(ActionEvent event) {
+        
+        String placa = campoBuscarPlaca.getText().trim();
+        
+        if(!placa.isEmpty()) {
+            Carro carro = new Carro();
+            carro.setPlaca(placa);
+            
+            GerenciadorDAO gerenciador = new GerenciadorDAO();
+            gerenciador.searchPlaca(carro);
+            
+            campoMarca.setText(carro.getMarca());
+            campoModelo.setText(carro.getModelo());
+            campoAno.setText(String.valueOf(carro.getAno()));
+            campoTipoCarro.setText(carro.getTipoCarro());
+            campoQuilometragem.setText(String.valueOf(carro.getQuilometragem()));
+            campoTanque.setText(carro.getTanque());
         }
         
     }
