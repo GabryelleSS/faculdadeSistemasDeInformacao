@@ -1,6 +1,6 @@
 /* .felipe {
   -fx-opacity: 0;
-} */
+}
 
 .teste {
   -fx-opacity: 0;
@@ -8,6 +8,10 @@
 
 .fedido {
   -fx-opacity: 0;
+} */
+
+.menu {
+  -fx-background-color: #e6e6e6;
 }
 
 .btn {
@@ -17,11 +21,13 @@
 .btnLimpar {
   -fx-border-color: #6a717c;
   -fx-border-radius: 3px;
+  -fx-background-color: #fff;
   -fx-text-fill: #6a717c;
 }
 
 .btnSalvar {
   -fx-border-color: #26cd64;
   -fx-border-radius: 3px;
+  -fx-background-color: #fff;
   -fx-text-fill: #26cd64;
 }

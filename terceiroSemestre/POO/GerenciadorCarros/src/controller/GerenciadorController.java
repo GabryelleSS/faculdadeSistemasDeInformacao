@@ -85,6 +85,8 @@ public class GerenciadorController implements Initializable {
     private JFXTextField campoQuilometragem;
     @FXML
     private JFXTextField campoTanque;
+    @FXML
+    private JFXTextField campoValor;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -421,6 +423,38 @@ public class GerenciadorController implements Initializable {
             campoQuilometragem.setText(String.valueOf(carro.getQuilometragem()));
             campoTanque.setText(carro.getTanque());
         }
+        
+    }
+    
+    @FXML
+    private void btnSalvarVenda(ActionEvent event) {
+        
+        if(campoBuscarPlaca.getText().trim().isEmpty() || campoValor.getText().trim().isEmpty() || campoMarca.getText().trim().isEmpty()) {
+            mensagemDialog("Ops!", "Não foi possivel realizar a venda do carro.");
+        } else {
+            DadosAdicionaisCarro dadosAdicionaisCarro = new DadosAdicionaisCarro();
+
+            dadosAdicionaisCarro.setQuilometragem(Integer.parseInt(campoQuilometragem.getText().trim()));
+            dadosAdicionaisCarro.setTanque(campoTanque.getText().trim());
+            
+            Operacao operacao = new Operacao();
+            operacao.setTipoOperacao("Venda");
+            
+            operacao.setValor(Double.parseDouble(campoValor.getText().trim()));
+            operacao.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
+            operacao.setTanque(dadosAdicionaisCarro.getTanque());
+            operacao.setPlaca(campoBuscarPlaca.getText());
+            
+            GerenciadorDAO gerenciador = new GerenciadorDAO();
+            
+            gerenciador.insertOperation(operacao);
+            
+            mensagemDialog("Hey!", "Venda realizada com sucesso.");
+        }
+    }
+
+    @FXML
+    private void btnLimparCamposVendas(ActionEvent event) {
         
     }
 }
