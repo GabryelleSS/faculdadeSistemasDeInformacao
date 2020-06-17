@@ -1,6 +1,6 @@
 package connection;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
@@ -8,7 +8,7 @@ public class UtilDAO {
     private static final String IP = "bd.server.ip";
     private static final String PORTA = "bd.server.porta";
     private static final String BANCO = "bd.server.banco";
-    private static final String USER = "bd.server.root";
+    private static final String USER = "bd.server.user";
     private static final String PASSWORD = "bd.server.password";
     
     public static Connection connection() {
@@ -18,7 +18,7 @@ public class UtilDAO {
             Properties prop = new Properties();
             
             ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-            prop.load(classLoader.getResourceAsStream("properties/ambiente.properties"));
+            prop.load(classLoader.getResourceAsStream("property/ambiente.properties"));
             
             String ip = prop.getProperty(IP);
             String porta = prop.getProperty(PORTA);
@@ -32,7 +32,7 @@ public class UtilDAO {
                 password = prop.getProperty(PASSWORD);
             }
             
-            conexao = (Connection) DriverManager.getConnection("jdbc:mysql://"+ip+":"+porta+"/"+banco+"", ""+user+"", ""+password+"");
+            conexao = DriverManager.getConnection("jdbc:mysql://"+ip+":"+porta+"/"+banco+"", ""+user+"", ""+password+"");
             
         } catch(Exception e) {
             System.out.println("Não foi possivel conectar ao banco.");

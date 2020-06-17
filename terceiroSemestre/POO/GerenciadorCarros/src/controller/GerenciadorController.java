@@ -1,7 +1,10 @@
 package controller;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.scene.layout.Pane;
 import method.GerenciadorDAO;
 import model.Carro;
 import model.DadosAdicionaisCarro;
+import model.Operacao;
 
 public class GerenciadorController implements Initializable {
     private int seleciona = 0;
@@ -55,6 +59,8 @@ public class GerenciadorController implements Initializable {
     private ComboBox<String> fieldTanqueCarro;
     @FXML
     private TextField fieldValorCarro;
+    @FXML
+    private TextField fieldMarcaCarro;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -271,6 +277,7 @@ public class GerenciadorController implements Initializable {
         ArrayList<String> Campos = new ArrayList();
         
         Campos.add(fieldPlacaCarro.getText());
+        Campos.add(fieldMarcaCarro.getText());
         Campos.add(fieldModeloCarro.getText());
         Campos.add(fieldAnoCarro.getText());
         Campos.add(fieldTipoCarro.getValue());
@@ -290,9 +297,27 @@ public class GerenciadorController implements Initializable {
         
         return true;
     }
+    
+    private void limparCampos() {
+        fieldPlacaCarro.clear();
+        fieldMarcaCarro.clear();
+        fieldModeloCarro.clear();
+        fieldAnoCarro.clear();
+        fieldTipoCarro.valueProperty().set(null);
+        fieldKmCarro.clear();
+        fieldTanqueCarro.valueProperty().set(null);
+        fieldValorCarro.clear();
+    }
 
     @FXML
     private void btnLimparCampos(ActionEvent event) {
+        limparCampos();
+    }
+    
+    private Date horaAtual() {
+	Date date = new Date(); 
+        
+        return date;
     }
 
     @FXML
@@ -307,15 +332,29 @@ public class GerenciadorController implements Initializable {
             
             Carro carro = new Carro();
             
+            Operacao operacao = new Operacao();
+            
             carro.setPlaca(fieldPlacaCarro.getText().trim());
+            carro.setMarca(fieldMarcaCarro.getText().trim());
             carro.setModelo(fieldModeloCarro.getText().trim());
             carro.setAno(Integer.parseInt(fieldAnoCarro.getText().trim()));
             carro.setTipoCarro(fieldTipoCarro.getValue().trim());
             carro.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
             carro.setTanque(dadosAdicionaisCarro.getTanque());
             
+            operacao.setTipoOperacao("Compra");
+            operacao.setData(horaAtual());
+            operacao.setValor(Double.parseDouble(fieldValorCarro.getText()));
+            operacao.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
+            operacao.setTanque(dadosAdicionaisCarro.getTanque());
+            operacao.setPlaca(fieldPlacaCarro.getText().trim());
+            
             GerenciadorDAO gerenciador = new GerenciadorDAO();
             gerenciador.insertCars(carro);
+            
+            gerenciador.insertOperation(operacao);
+            
+            limparCampos();
             
         } else {
             System.out.println("Sou falso");

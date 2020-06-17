@@ -95,7 +95,7 @@
                <children>
                   <Pane fx:id="containerCadastroCarro" prefHeight="330.0" prefWidth="702.0" styleClass="teste" stylesheets="@../assets/css/gerenciador.css">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="330.0" prefWidth="702.0">
+                        <HBox alignment="CENTER" prefHeight="280.0" prefWidth="702.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="250.0">
                                  <children>
@@ -121,22 +121,22 @@
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
+                                          <Label text="Marca">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="fieldMarcaCarro" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
                                           <Label text="Ano">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
                                           <TextField fx:id="fieldAnoCarro" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="Tipo de Carro">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="fieldTipoCarro" prefHeight="25.0" prefWidth="266.0" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -148,12 +148,12 @@
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Label text="Quilometragem">
+                                          <Label text="Tipo de Carro">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="fieldKmCarro" />
+                                          <ComboBox fx:id="fieldTipoCarro" prefHeight="25.0" prefWidth="258.0" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
@@ -168,6 +168,16 @@
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
+                                          <Label text="Quilometragem">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="fieldKmCarro" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
                                           <Label text="Valor">
                                              <font>
                                                 <Font size="14.0" />
@@ -176,27 +186,31 @@
                                           <TextField fx:id="fieldValorCarro" />
                                        </children>
                                     </VBox>
-                                    <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#btnLimparCampos" prefWidth="70.0" text="Limpar">
-                                                   <HBox.margin>
-                                                      <Insets right="20.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                                <Button mnemonicParsing="false" onAction="#btnSalvarCadastroCarro" prefWidth="70.0" text="Salvar" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
                                  </children>
                                  <HBox.margin>
                                     <Insets right="30.0" />
                                  </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_RIGHT" layoutY="284.0" prefHeight="46.0" prefWidth="692.0">
+                           <children>
+                              <VBox alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="702.0">
+                                 <children>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="36.0" prefWidth="399.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#btnLimparCampos" prefWidth="70.0" text="Limpar">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button mnemonicParsing="false" onAction="#btnSalvarCadastroCarro" prefWidth="70.0" text="Salvar" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" right="75.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
                               </VBox>
                            </children>
                         </HBox>
@@ -435,7 +449,7 @@
             </Pane>
          </children>
       </VBox>
-      <HBox layoutX="150.0" layoutY="60.0" prefHeight="48.0" prefWidth="650.0">
+      <HBox layoutX="150.0" layoutY="60.0" prefHeight="35.0" prefWidth="650.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="325.0">
                <children>
@@ -456,9 +470,9 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefHeight="42.0" prefWidth="22.0" text=" ">
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAdd" prefHeight="38.0" prefWidth="0.0" text=" ">
                      <graphic>
-                        <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/icon/mais.png" />
                            </image>

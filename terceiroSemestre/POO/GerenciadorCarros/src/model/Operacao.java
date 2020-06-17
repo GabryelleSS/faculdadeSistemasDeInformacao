@@ -26,6 +26,10 @@ public class Operacao extends Carro {
         }
         this.valor = valor;
     }
+
+    public Operacao() {
+    }
+    
     
     public int getIdOperacao() {
         return idOperacao;
