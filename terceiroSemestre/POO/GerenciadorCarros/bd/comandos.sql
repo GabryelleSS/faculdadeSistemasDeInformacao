@@ -10,7 +10,7 @@ create table carro(
     tipo_carro varchar(9) not null,
     quilometragem int not null,
     tanque varchar(12) not null,
-    disponibilidade boolean not null,
+    disponibilidade tinyint not null,
     primary key(placa)
 );
 

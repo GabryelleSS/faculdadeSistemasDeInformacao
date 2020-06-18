@@ -2,4 +2,4 @@ use gerenciador_carros;
 
 delete from operacao;
 
-delete from carro;
+delete from carro where placa = "pandora";

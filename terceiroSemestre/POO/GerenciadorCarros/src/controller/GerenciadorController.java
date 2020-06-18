@@ -5,11 +5,12 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -32,9 +34,13 @@ import model.Operacao;
 public class GerenciadorController implements Initializable {
     private int seleciona = 0;
     
-    TableView<Carro> tabelaCarroCadastro = new TableView<>();
-    TableView<Carro> tabelaCarroVendido = new TableView<>();
-    TableView<Carro> tabelaCarroAlugado = new TableView<>();
+    TableView<Operacao> tabelaCarroCadastro = new TableView<>();
+    TableView<Operacao> tabelaCarroVendido = new TableView<>();
+    TableView<Operacao> tabelaCarroAlugado = new TableView<>();
+    TableView<Operacao> tabelaCarroDevolvidos = new TableView<>();
+    
+    private List<Carro> listaCarros = new ArrayList();
+    private List<Operacao> listaOperacoes = new ArrayList();
     
     @FXML
     private Pane root;
@@ -48,8 +54,6 @@ public class GerenciadorController implements Initializable {
     private Pane containerCadastroCarro;
     @FXML
     private Pane containerVendaCarro;
-    @FXML
-    private Pane containerAluguelCarro;
     @FXML
     private HBox containerBusca;
     @FXML
@@ -87,14 +91,82 @@ public class GerenciadorController implements Initializable {
     private JFXTextField campoTanque;
     @FXML
     private JFXTextField campoValor;
+    @FXML
+    private JFXTextField fieldBuscarPlacaAluguel;
+    @FXML
+    private JFXTextField fieldMarcaAluguel;
+    @FXML
+    private JFXTextField fieldModeloAluguel;
+    @FXML
+    private JFXTextField fieldAnoAluguel;
+    @FXML
+    private JFXTextField fieldTipoCarroAluguel;
+    @FXML
+    private JFXTextField fieldValorAluguel;
+    @FXML
+    private JFXTextField fieldKMAluguel;
+    @FXML
+    private JFXTextField fieldTanqueAluguel;
+    private JFXButton btnSaidaCarros;
+    private JFXButton btnEntradaCarros;
+    @FXML
+    private Pane containerAluguelCarroEntrada;
+    @FXML
+    private JFXButton saidaCarro;
+    @FXML
+    private JFXButton entradaCarro;
+    @FXML
+    private StackPane stackPaneAluguel;
+    @FXML
+    private JFXButton liberarCarro;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnAdd.setVisible(false);
         containerCadastroCarro.setVisible(false);
         containerVendaCarro.setVisible(false);
-        containerAluguelCarro.setVisible(false);
+        containerAluguelCarroEntrada.setVisible(false);
         stackPane.setVisible(false);
+        stackPaneAluguel.setVisible(false);
+        entradaCarro.setVisible(false);
+        saidaCarro.setVisible(false);
+        liberarCarro.setVisible(false);
+    }
+    
+    private ObservableList<Operacao> listaCarros() {
+        
+        GerenciadorDAO gereciadorDAO = new GerenciadorDAO();
+        
+        return FXCollections.observableArrayList(
+            gereciadorDAO.selectCars()
+        );
+    }
+    
+    private ObservableList<Operacao> listaVenda() {
+        
+        GerenciadorDAO gereciadorDAO = new GerenciadorDAO();
+        
+        return FXCollections.observableArrayList(
+            gereciadorDAO.selectCarsBuy()
+        );
+    }
+    
+    private ObservableList<Operacao> listaAluguel() {
+        
+        GerenciadorDAO gereciadorDAO = new GerenciadorDAO();
+        
+        return FXCollections.observableArrayList(
+            gereciadorDAO.selectCarsRent()
+        );
+    }
+    
+    private ObservableList<Operacao> listaAluguelDevolvidos() {
+        
+        GerenciadorDAO gereciadorDAO = new GerenciadorDAO();
+        
+        return FXCollections.observableArrayList(
+            gereciadorDAO.selectCarsDevolution()
+        );
     }
 
     private void limparPanel() {
@@ -102,10 +174,13 @@ public class GerenciadorController implements Initializable {
         root.getChildren().remove(tabelaCarroCadastro);
         root.getChildren().remove(tabelaCarroVendido);
         root.getChildren().remove(tabelaCarroAlugado);
+        root.getChildren().remove(tabelaCarroDevolvidos);
         
         containerCadastroCarro.setVisible(false);
         containerVendaCarro.setVisible(false);
-        containerAluguelCarro.setVisible(false);
+        containerAluguelCarroEntrada.setVisible(false);
+        entradaCarro.setVisible(false);
+        saidaCarro.setVisible(false);
     }
 
     private void cadastrarCarro() {
@@ -132,19 +207,22 @@ public class GerenciadorController implements Initializable {
         breadcrumbs.setText("Aluguel de carros");
         btnAdd.setVisible(true);
         
-        containerAluguelCarro.setVisible(true);
+        limparPanel();
+        containerAluguelCarroEntrada.setVisible(true);
     }
-
+   
     @FXML
     private void btnSelecionarCarro(ActionEvent event) {
+        limparPanel();
+        
         breadcrumbs.setText("Carros Cadastrados");
+        
         tabelaCarroCadastrado();
         
         labelAcaoBtn.setText("Adicionar novo carro");
         btnAdd.setVisible(true);
         
         seleciona = 1;
-        
         containerBusca.setVisible(true);
     }
 
@@ -169,7 +247,8 @@ public class GerenciadorController implements Initializable {
         breadcrumbs.setText("Carros Alugados");
         
         labelAcaoBtn.setText("Cadastrar aluguel");
-        tabelaCarroAlugado();
+        entradaCarro.setVisible(true);
+        saidaCarro.setVisible(true);
                 
         btnAdd.setVisible(true);
         
@@ -182,7 +261,10 @@ public class GerenciadorController implements Initializable {
     @FXML
     private void btnAdd(ActionEvent event) {
         limparPanel();
+        limparCampos();
         containerBusca.setVisible(false);
+        saidaCarro.setVisible(false);
+        entradaCarro.setVisible(false);
         
         switch(seleciona) {
             case 1:
@@ -203,16 +285,26 @@ public class GerenciadorController implements Initializable {
         
         tabelaCarroCadastro.setId("tabelaCarro");
         
-        TableColumn<Carro, String> colPlaca = new TableColumn<>("Placa");
-        TableColumn<Carro, String> colModelo = new TableColumn<>("Modelo");
-        TableColumn<Carro, String> colDataHora = new TableColumn<>("Data e hora");
-        TableColumn<Carro, String> colValor = new TableColumn<>("Valor");
-        TableColumn<Carro, String> colKM = new TableColumn<>("Km");
-        TableColumn<Carro, String> colTanque = new TableColumn<>("Tanque");
-        TableColumn<Carro, String> colDispo = new TableColumn<>("Disp.");
+        TableColumn<Operacao, String> colPlaca = new TableColumn<>("Placa");
+        TableColumn<Operacao, String> colModelo = new TableColumn<>("Modelo");
+        TableColumn<Operacao, String> colDataHora = new TableColumn<>("Data e hora");
+        TableColumn<Operacao, String> colValor = new TableColumn<>("Valor");
+        TableColumn<Operacao, String> colKM = new TableColumn<>("Km");
+        TableColumn<Operacao, String> colTanque = new TableColumn<>("Tanque");
+        TableColumn<Operacao, String> colDispo = new TableColumn<>("Disp.");
+        
+        tabelaCarroCadastro.setItems(listaCarros());
         
         tabelaCarroCadastro.getColumns().addAll(colPlaca, colModelo,colDataHora, colValor, colKM, colTanque, colDispo);
         tabelaCarroCadastro.setPrefWidth(702);
+        
+        colPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        colDataHora.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        colKM.setCellValueFactory(new PropertyValueFactory<>("quilometragem"));
+        colTanque.setCellValueFactory(new PropertyValueFactory<>("tanque"));
+        colDispo.setCellValueFactory(new PropertyValueFactory<>("disponibilidadeLocacao"));
         
         colPlaca.setPrefWidth(100);
         colModelo.setPrefWidth(100);
@@ -222,49 +314,100 @@ public class GerenciadorController implements Initializable {
         colTanque.setPrefWidth(100);
         colDispo.setPrefWidth(100);
         
-        root.getChildren().add(tabelaCarroCadastro);
+        root.getChildren().addAll(tabelaCarroCadastro);
     }
 
     private void tabelaCarroAlugado() {
         
         tabelaCarroAlugado.setId("tabelaCarro");
         
-        TableColumn<Carro, String> colPlaca = new TableColumn<>("Placa");
-        TableColumn<Carro, String> colModelo = new TableColumn<>("Modelo");
-        TableColumn<Carro, String> colEntrada = new TableColumn<>("Entrada");
-        TableColumn<Carro, String> colDevolucao = new TableColumn<>("Devolução");
-        TableColumn<Carro, String> colValor = new TableColumn<>("Valor");
-        TableColumn<Carro, String> colKM = new TableColumn<>("Km");
-        TableColumn<Carro, String> colTanque = new TableColumn<>("Tanque");
+        liberarCarro.setVisible(true);
         
-        tabelaCarroAlugado.getColumns().addAll(colPlaca, colModelo,colEntrada, colDevolucao, colValor, colKM, colTanque);
+        TableColumn<Operacao, String> colPlaca = new TableColumn<>("Placa");
+        TableColumn<Operacao, String> colModelo = new TableColumn<>("Modelo");
+        TableColumn<Operacao, String> colEntrada = new TableColumn<>("Entrada");
+        TableColumn<Operacao, String> colValor = new TableColumn<>("Valor");
+        TableColumn<Operacao, String> colKM = new TableColumn<>("Km");
+        TableColumn<Operacao, String> colTanque = new TableColumn<>("Tanque");
+        
+        tabelaCarroAlugado.setItems(listaAluguel());
+        tabelaCarroAlugado.getColumns().addAll(colPlaca, colModelo,colEntrada, colValor, colKM, colTanque);
+        
         tabelaCarroAlugado.setPrefWidth(702);
+        
+        colPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        colEntrada.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        colKM.setCellValueFactory(new PropertyValueFactory<>("quilometragem"));
+        colTanque.setCellValueFactory(new PropertyValueFactory<>("tanque"));
         
         colPlaca.setPrefWidth(100);
         colModelo.setPrefWidth(100);
         colEntrada.setPrefWidth(100);
+        colValor.setPrefWidth(100);
+        colKM.setPrefWidth(100);
+        colTanque.setPrefWidth(200);
+        
+        root.getChildren().add(tabelaCarroAlugado);
+    }
+
+    private void tabelaCarroDevolvidos() {
+        
+        tabelaCarroDevolvidos.setId("tabelaCarro");
+        
+        TableColumn<Operacao, String> colPlaca = new TableColumn<>("Placa");
+        TableColumn<Operacao, String> colModelo = new TableColumn<>("Modelo");
+        TableColumn<Operacao, String> colDevolucao = new TableColumn<>("Devolução");
+        TableColumn<Operacao, String> colValor = new TableColumn<>("Valor");
+        TableColumn<Operacao, String> colKM = new TableColumn<>("Km");
+        TableColumn<Operacao, String> colTanque = new TableColumn<>("Tanque");
+        
+        tabelaCarroDevolvidos.setItems(listaAluguelDevolvidos());
+        tabelaCarroDevolvidos.getColumns().addAll(colPlaca, colModelo,colDevolucao, colValor, colKM, colTanque);
+        tabelaCarroDevolvidos.setPrefWidth(702);
+        
+        colPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        colDevolucao.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        colKM.setCellValueFactory(new PropertyValueFactory<>("quilometragem"));
+        colTanque.setCellValueFactory(new PropertyValueFactory<>("tanque"));
+        
+        colPlaca.setPrefWidth(100);
+        colModelo.setPrefWidth(100);
         colDevolucao.setPrefWidth(100);
         colValor.setPrefWidth(100);
         colKM.setPrefWidth(100);
-        colTanque.setPrefWidth(100);
+        colTanque.setPrefWidth(200);
         
-        root.getChildren().add(tabelaCarroAlugado);
+        root.getChildren().add(tabelaCarroDevolvidos);
     }
 
     private void tabelaCarroVendido() {
         
         tabelaCarroVendido.setId("tabelaCarro");
         
-        TableColumn<Carro, String> colPlaca = new TableColumn<>("Placa");
-        TableColumn<Carro, String> colModelo = new TableColumn<>("Modelo");
-        TableColumn<Carro, String> colMarca = new TableColumn<>("Marca");
-        TableColumn<Carro, String> colDataHora = new TableColumn<>("Data e hora");
-        TableColumn<Carro, String> colValor = new TableColumn<>("Valor");
-        TableColumn<Carro, String> colKM = new TableColumn<>("Km");
-        TableColumn<Carro, String> colTanque = new TableColumn<>("Tanque");
+        TableColumn<Operacao, String> colPlaca = new TableColumn<>("Placa");
+        TableColumn<Operacao, String> colModelo = new TableColumn<>("Modelo");
+        TableColumn<Operacao, String> colMarca = new TableColumn<>("Marca");
+        TableColumn<Operacao, String> colDataHora = new TableColumn<>("Data e hora");
+        TableColumn<Operacao, String> colValor = new TableColumn<>("Valor");
+        TableColumn<Operacao, String> colKM = new TableColumn<>("Km");
+        TableColumn<Operacao, String> colTanque = new TableColumn<>("Tanque");
+        
+        tabelaCarroVendido.setItems(listaVenda());
         
         tabelaCarroVendido.getColumns().addAll(colPlaca, colModelo, colMarca, colDataHora, colValor, colKM, colTanque);
         tabelaCarroVendido.setPrefWidth(702);
+        
+        colPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+        colMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+        colDataHora.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        colKM.setCellValueFactory(new PropertyValueFactory<>("quilometragem"));
+        colTanque.setCellValueFactory(new PropertyValueFactory<>("tanque"));
         
         colPlaca.setPrefWidth(100);
         colModelo.setPrefWidth(100);
@@ -310,7 +453,7 @@ public class GerenciadorController implements Initializable {
         
         for(String campo : Campos) {
             if (campo.trim().isEmpty()) {
-                System.out.println("Campo vazio");
+                System.out.println("Campos vazios.");
                 
                 return false;
             } else {
@@ -349,11 +492,73 @@ public class GerenciadorController implements Initializable {
         JFXButton button = new JFXButton("OK");
         button.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+                stackPane.setVisible(false);
                 dialog.close();
             }
         });
         
         content.setActions(button);
+        
+        dialog.show();
+    }
+    
+    private void mensagemEditarTabelaAluguel(String header, String body) {
+        stackPaneAluguel.setVisible(true);
+        JFXDialogLayout content = new JFXDialogLayout();
+        
+        content.setHeading(new Text(header));
+        
+        content.setBody(new Text(body));
+            
+        String placa = tabelaCarroAlugado.getSelectionModel().getSelectedItem().getPlaca();
+        double valor = tabelaCarroAlugado.getSelectionModel().getSelectedItem().getValor();
+        int km = tabelaCarroAlugado.getSelectionModel().getSelectedItem().getQuilometragem();
+        String tanque = tabelaCarroAlugado.getSelectionModel().getSelectedItem().getTanque();
+        
+        JFXDialog dialog = new JFXDialog(stackPaneAluguel, content, JFXDialog.DialogTransition.CENTER);
+        
+        JFXButton buttonCancel = new JFXButton("Cancel");
+        buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                stackPaneAluguel.setVisible(false);
+                dialog.close();
+            }
+        });
+        
+        JFXButton buttonOk = new JFXButton("OK");
+        buttonOk.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                
+                GerenciadorDAO gerenciadorDAO = new GerenciadorDAO();
+                DadosAdicionaisCarro dadosAdicionaisCarro = new DadosAdicionaisCarro();
+                
+                dadosAdicionaisCarro.setQuilometragem((km));
+                dadosAdicionaisCarro.setTanque(tanque);
+                
+                Operacao operacao = new Operacao();
+                operacao.setTipoOperacao("Devolucao");
+
+                operacao.setValor((valor));
+                operacao.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
+                operacao.setTanque(dadosAdicionaisCarro.getTanque());
+                operacao.setPlaca(placa);
+
+                Carro carro = new Carro();
+
+                carro.setDisponibilidadeLocacao(0);
+                carro.setPlaca(placa);
+
+                GerenciadorDAO gerenciador = new GerenciadorDAO();
+
+                gerenciador.insertOperation(operacao);
+                gerenciador.updateAvailabilityCar(carro);
+                
+                stackPaneAluguel.setVisible(false);
+                dialog.close();
+            }
+        });
+        
+        content.setActions(buttonCancel, buttonOk);
         
         dialog.show();
     }
@@ -369,7 +574,6 @@ public class GerenciadorController implements Initializable {
             dadosAdicionaisCarro.setTanque(fieldTanqueCarro.getValue().trim());
             
             Carro carro = new Carro();
-            
             Operacao operacao = new Operacao();
             
             carro.setPlaca(fieldPlacaCarro.getText().trim());
@@ -396,10 +600,8 @@ public class GerenciadorController implements Initializable {
                 mensagemDialog("Ops!", "Não foi possivel cadastrar o novo carro.");
             }
             
-            
-            
         } else {
-            System.out.println("Sou falso");
+            mensagemDialog("Ops!", "Não foi possivel cadastrar o novo carro.");
         }
         
     }
@@ -430,7 +632,7 @@ public class GerenciadorController implements Initializable {
     private void btnSalvarVenda(ActionEvent event) {
         
         if(campoBuscarPlaca.getText().trim().isEmpty() || campoValor.getText().trim().isEmpty() || campoMarca.getText().trim().isEmpty()) {
-            mensagemDialog("Ops!", "Não foi possivel realizar a venda do carro.");
+            mensagemDialog("Ops!", "Preencha os campos corretamente.");
         } else {
             DadosAdicionaisCarro dadosAdicionaisCarro = new DadosAdicionaisCarro();
 
@@ -443,11 +645,17 @@ public class GerenciadorController implements Initializable {
             operacao.setValor(Double.parseDouble(campoValor.getText().trim()));
             operacao.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
             operacao.setTanque(dadosAdicionaisCarro.getTanque());
-            operacao.setPlaca(campoBuscarPlaca.getText());
+            operacao.setPlaca(campoBuscarPlaca.getText().trim());
+            
+            Carro carro = new Carro();
+            
+            carro.setDisponibilidadeLocacao(1);
+            carro.setPlaca(campoBuscarPlaca.getText().trim());
             
             GerenciadorDAO gerenciador = new GerenciadorDAO();
             
             gerenciador.insertOperation(operacao);
+            gerenciador.updateAvailabilityCar(carro);
             
             mensagemDialog("Hey!", "Venda realizada com sucesso.");
         }
@@ -455,6 +663,90 @@ public class GerenciadorController implements Initializable {
 
     @FXML
     private void btnLimparCamposVendas(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void btnSalvarAluguel(ActionEvent event) {
+        
+        if(fieldBuscarPlacaAluguel.getText().trim().isEmpty() || fieldValorAluguel.getText().trim().isEmpty() || fieldMarcaAluguel.getText().trim().isEmpty()) {
+            mensagemDialog("Ops!", "Preencha os campos corretamente.");
+        } else {
+            DadosAdicionaisCarro dadosAdicionaisCarro = new DadosAdicionaisCarro();
+
+            dadosAdicionaisCarro.setQuilometragem(Integer.parseInt(fieldKMAluguel.getText().trim()));
+            dadosAdicionaisCarro.setTanque(fieldTanqueAluguel.getText().trim());
+            
+            Operacao operacao = new Operacao();
+            operacao.setTipoOperacao("Aluguel");
+            
+            operacao.setValor(Double.parseDouble(fieldValorAluguel.getText().trim()));
+            operacao.setQuilometragem(dadosAdicionaisCarro.getQuilometragem());
+            operacao.setTanque(dadosAdicionaisCarro.getTanque());
+            operacao.setPlaca(fieldBuscarPlacaAluguel.getText().trim());
+            
+            Carro carro = new Carro();
+            
+            carro.setDisponibilidadeLocacao(2);
+            carro.setPlaca(fieldBuscarPlacaAluguel.getText().trim());
+            
+            GerenciadorDAO gerenciador = new GerenciadorDAO();
+            
+            gerenciador.insertOperation(operacao);
+            gerenciador.updateAvailabilityCar(carro);
+            
+            mensagemDialog("Hey!", "Aluguel realizado com sucesso.");
+        }
+    }
+
+    @FXML
+    private void btnLimparCamposAluguel(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnPesquisaPlacaAluguel(ActionEvent event) {
+        String placa = fieldBuscarPlacaAluguel.getText().trim();
+        
+        if(!placa.isEmpty()) {
+            Carro carro = new Carro();
+            carro.setPlaca(placa);
+            
+            GerenciadorDAO gerenciador = new GerenciadorDAO();
+            gerenciador.searchPlaca(carro);
+            
+            fieldMarcaAluguel.setText(carro.getMarca());
+            fieldModeloAluguel.setText(carro.getModelo());
+            fieldAnoAluguel.setText(String.valueOf(carro.getAno()));
+            fieldTipoCarroAluguel.setText(carro.getTipoCarro());
+            fieldKMAluguel.setText(String.valueOf(carro.getQuilometragem()));
+            fieldTanqueAluguel.setText(carro.getTanque());
+        }
+    }
+
+    @FXML
+    private void btnCarrosDevolvidos(ActionEvent event) {
+        tabelaCarroDevolvidos();
+        entradaCarro.setVisible(false);
+        saidaCarro.setVisible(false);
+    }
+
+    @FXML
+    private void btnCarrosAlugadosEntrada(ActionEvent event) {
+        tabelaCarroAlugado();
+        entradaCarro.setVisible(false);
+        saidaCarro.setVisible(false);
+    }
+
+    @FXML
+    private void btnLiberarCarro(ActionEvent event) {
+        if (tabelaCarroAlugado.getSelectionModel().getSelectedItem() != null) {
+            
+            mensagemEditarTabelaAluguel("Ei!", "Deseja liberar o aluguel do carro?");
+        }
+
+    }
+    
+    private void editarCampo() {
         
     }
 }

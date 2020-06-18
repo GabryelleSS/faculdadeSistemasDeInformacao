@@ -4,9 +4,9 @@
 
 .teste {
   -fx-opacity: 0;
-}
+} */
 
-.fedido {
+/* .fedido {
   -fx-opacity: 0;
 } */
 
@@ -30,4 +30,11 @@
   -fx-border-radius: 3px;
   -fx-background-color: #fff;
   -fx-text-fill: #26cd64;
+}
+
+.btnAlugueis {
+  -fx-border-color: #fff;
+  -fx-border-radius: 3px;
+  -fx-background-color: #2054c4;
+  -fx-text-fill: #fff;
 }

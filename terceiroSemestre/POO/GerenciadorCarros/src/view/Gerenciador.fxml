@@ -2,13 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -324,18 +321,18 @@
                         <Insets left="20.0" />
                      </padding>
                   </Pane>
-                  <Pane fx:id="containerAluguelCarro" layoutY="-2.0" prefHeight="330.0" prefWidth="692.0" styleClass="fedido" stylesheets="@../assets/css/gerenciador.css">
+                  <Pane fx:id="containerAluguelCarroEntrada" layoutY="-2.0" prefHeight="330.0" prefWidth="692.0" styleClass="fedido" stylesheets="@../assets/css/gerenciador.css">
                      <children>
                         <HBox alignment="CENTER" prefHeight="330.0" prefWidth="702.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="250.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="99.0" prefWidth="250.0">
+                                    <VBox alignment="CENTER" prefHeight="63.0" prefWidth="250.0">
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="9.0" prefWidth="250.0">
                                              <children>
-                                                <JFXTextArea focusColor="#1949cc" labelFloat="true" prefHeight="0.0" prefWidth="196.0" promptText="Digite a placa" />
-                                                <JFXButton prefHeight="45.0" prefWidth="8.0" text=" ">
+                                                <JFXTextField fx:id="fieldBuscarPlacaAluguel" focusColor="#1949cc" labelFloat="true" prefHeight="25.0" prefWidth="345.0" promptText="Pesquisar a placa" />
+                                                <JFXButton onAction="#btnPesquisaPlacaAluguel" prefHeight="45.0" prefWidth="8.0" text=" ">
                                                    <graphic>
                                                       <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -352,17 +349,31 @@
                                        </VBox.margin>
                                     </VBox>
                                     <VBox prefHeight="211.0" prefWidth="250.0">
-                                       <children>
-                                          <TableView prefHeight="214.0" prefWidth="250.0">
-                                             <columns>
-                                                <TableColumn prefWidth="125.0" text="Placa" />
-                                                <TableColumn prefWidth="124.0" text="Modelo" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
                                        </VBox.margin>
+                                       <children>
+                                          <JFXTextField fx:id="fieldMarcaAluguel" disable="true" focusColor="#1949cc" labelFloat="true" promptText="Marca">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="fieldModeloAluguel" disable="true" focusColor="#1949cc" labelFloat="true" promptText="Modelo">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="fieldAnoAluguel" disable="true" focusColor="#1949cc" labelFloat="true" promptText="Ano">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                          <JFXTextField fx:id="fieldTipoCarroAluguel" disable="true" focusColor="#1949cc" labelFloat="true" promptText="Tipo de carro">
+                                             <VBox.margin>
+                                                <Insets bottom="30.0" />
+                                             </VBox.margin>
+                                          </JFXTextField>
+                                       </children>
                                     </VBox>
                                  </children>
                                  <HBox.margin>
@@ -371,47 +382,40 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="250.0">
                                  <children>
-                                    <VBox alignment="CENTER" prefHeight="119.0" prefWidth="250.0">
-                                       <children>
-                                          <JFXTextField focusColor="#1949cc" labelFloat="true" promptText="Valor" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="77.0" prefWidth="250.0">
-                                       <children>
-                                          <JFXTextField focusColor="#1949cc" labelFloat="true" promptText="Quilometragem" />
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="82.5" prefWidth="100.0">
-                                       <children>
-                                          <JFXTextField focusColor="#1949cc" labelFloat="true" promptText="Tanque" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="BOTTOM_RIGHT" prefHeight="82.5" prefWidth="250.0">
-                                       <children>
-                                          <HBox alignment="BOTTOM_RIGHT" prefHeight="67.0" prefWidth="250.0">
-                                             <children>
-                                                <JFXButton prefWidth="70.0" text="Limpar">
-                                                   <HBox.margin>
-                                                      <Insets right="20.0" />
-                                                   </HBox.margin>
-                                                   <styleClass>
-                                                      <String fx:value="btn" />
-                                                      <String fx:value="btnLimpar" />
-                                                   </styleClass>
-                                                </JFXButton>
-                                                <JFXButton prefWidth="70.0" text="Salvar">
-                                                   <styleClass>
-                                                      <String fx:value="btnSalvar" />
-                                                      <String fx:value="btn" />
-                                                   </styleClass>
-                                                </JFXButton>
-                                             </children>
-                                          </HBox>
-                                       </children>
+                                    <JFXTextField fx:id="fieldValorAluguel" focusColor="#1949cc" labelFloat="true" promptText="Valor">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" />
+                                          <Insets bottom="30.0" top="85.0" />
                                        </VBox.margin>
-                                    </VBox>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="fieldKMAluguel" disable="true" focusColor="#1949cc" labelFloat="true" promptText="Quilometragem">
+                                       <VBox.margin>
+                                          <Insets bottom="30.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="fieldTanqueAluguel" disable="true" focusColor="#1949cc" labelFloat="true" promptText="Tanque">
+                                       <VBox.margin>
+                                          <Insets bottom="30.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="67.0" prefWidth="250.0">
+                                       <children>
+                                          <JFXButton onAction="#btnLimparCamposAluguel" prefWidth="70.0" text="Limpar">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btn" />
+                                                <String fx:value="btnLimpar" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnSalvarAluguel" prefWidth="70.0" text="Salvar">
+                                             <styleClass>
+                                                <String fx:value="btnSalvar" />
+                                                <String fx:value="btn" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
                                  </children>
                                  <HBox.margin>
                                     <Insets right="30.0" />
@@ -452,7 +456,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXButton fx:id="btnAdd" onAction="#btnAdd" prefHeight="60.0" prefWidth="13.0" styleClass="btn" text=" ">
+                  <JFXButton fx:id="btnAdd" onAction="#btnAdd" prefHeight="60.0" prefWidth="13.0" styleClass="btn" stylesheets="@../assets/css/gerenciador.css" text=" ">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -464,6 +468,12 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
+                  <JFXButton fx:id="liberarCarro" onAction="#btnLiberarCarro" stylesheets="@../assets/css/gerenciador.css" text="Liberar">
+                     <styleClass>
+                        <String fx:value="btnLimpar" />
+                        <String fx:value="btn" />
+                     </styleClass>
+                  </JFXButton>
                </children>
             </HBox>
          </children>
@@ -472,5 +482,24 @@
          </opaqueInsets>
       </HBox>
       <StackPane fx:id="stackPane" layoutX="317.0" layoutY="160.0" prefHeight="150.0" prefWidth="299.0" />
+      <JFXButton fx:id="saidaCarro" layoutX="500.0" layoutY="220.0" onAction="#btnCarrosDevolvidos" prefHeight="40.0" prefWidth="130.0" stylesheets="@../assets/css/gerenciador.css" text="Devolução">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnAlugueis" />
+            <String fx:value="btn" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton fx:id="entradaCarro" layoutX="300.0" layoutY="220.0" onAction="#btnCarrosAlugadosEntrada" prefHeight="40.0" prefWidth="130.0" stylesheets="@../assets/css/gerenciador.css" text="Carros alugados">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <styleClass>
+            <String fx:value="btnAlugueis" />
+            <String fx:value="btn" />
+         </styleClass>
+      </JFXButton>
+      <StackPane fx:id="stackPaneAluguel" layoutX="327.0" layoutY="170.0" prefHeight="150.0" prefWidth="299.0" />
    </children>
 </AnchorPane>

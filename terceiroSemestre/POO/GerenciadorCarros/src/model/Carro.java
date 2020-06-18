@@ -7,9 +7,9 @@ public class Carro extends DadosAdicionaisCarro {
     protected int ano;
     protected String placa;
     protected String tipoCarro;
-    protected boolean disponibilidadeLocacao;
+    protected int disponibilidadeLocacao;
 
-    public Carro(String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int quilometragem, String tanque) {
+    public Carro(String marca, String modelo, int ano, String placa, String tipoCarro, int disponibilidadeLocacao, int quilometragem, String tanque) {
         super(quilometragem, tanque);
         this.marca = marca;
         this.modelo = modelo;
@@ -67,11 +67,11 @@ public class Carro extends DadosAdicionaisCarro {
         this.tipoCarro = tipoCarro;
     }
 
-    public boolean isDisponibilidadeLocacao() {
+    public int getDisponibilidadeLocacao() {
         return disponibilidadeLocacao;
     }
 
-    public void setDisponibilidadeLocacao(boolean disponibilidadeLocacao) {
+    public void setDisponibilidadeLocacao(int disponibilidadeLocacao) {
         this.disponibilidadeLocacao = disponibilidadeLocacao;
     }
     

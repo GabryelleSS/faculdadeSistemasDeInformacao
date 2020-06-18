@@ -1,10 +1,6 @@
 package model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Operacao extends Carro {
     
@@ -14,7 +10,7 @@ public class Operacao extends Carro {
     protected Date data;
     protected double valor;
 
-    public Operacao(int idOperacao, String tipoOperacao, Carro carro, Date data, double valor, String marca, String modelo, int ano, String placa, String tipoCarro, boolean disponibilidadeLocacao, int quilometragem, String tanque) {
+    public Operacao(int idOperacao, String tipoOperacao, Carro carro, Date data, double valor, String marca, String modelo, int ano, String placa, String tipoCarro, int disponibilidadeLocacao, int quilometragem, String tanque) {
         super(marca, modelo, ano, placa, tipoCarro, disponibilidadeLocacao, quilometragem, tanque);
         this.idOperacao = idOperacao;
         this.tipoOperacao = tipoOperacao;
@@ -23,9 +19,14 @@ public class Operacao extends Carro {
         this.valor = valor;
     }
 
-    public Operacao() {
+    public Operacao(Date data, String marca, String modelo, int ano, String placa, String tipoCarro, int disponibilidadeLocacao, int quilometragem, String tanque) {
+        super(marca, modelo, ano, placa, tipoCarro, disponibilidadeLocacao, quilometragem, tanque);
+        this.data = data;
     }
-    
+
+    public Operacao() {
+        
+    }
     
     public int getIdOperacao() {
         return idOperacao;
