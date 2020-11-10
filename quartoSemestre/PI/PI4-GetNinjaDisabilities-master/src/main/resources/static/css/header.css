@@ -1,0 +1,78 @@
+.custom-switch label::after {
+  top: calc(.25rem + 2px) !important;
+  left: calc(-2.25rem + 2px) !important;
+  width: calc(1rem - 0px) !important;
+  height: calc(1rem - 0px) !important;
+}
+
+.custom-switch label::before {
+  border-radius: 1.5rem !important;
+  width: 32px !important;
+  height: 20px !important;
+}
+
+.custom-switch .custom-control-label::after {
+  background-color: #174992;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+  border-color: #174992;
+  background-color: #174992;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.menu-header button {
+  background: none;
+  border: none;
+  color: #174992;
+  padding: 0 !important;
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.menu-header button:hover {
+  background: none;
+}
+
+.menu-header a {
+  margin-right: 15px;
+  font-weight: 600 !important;
+  color: #174992 !important;
+}
+.menu-header a:hover {
+  color: #2967c1 !important;
+}
+
+#logo{
+	color: #2967c1;
+}
+
+.btn-menu {
+  border-radius: 30px !important;
+  padding: 10px 25px !important;
+  font-weight: 600 !important;
+  margin-right: 10px;
+}
+
+.btn-menu:hover {
+  background-color: #2967c1 !important;
+  color:white !important;
+}
+
+.btn-sign-in {
+  background-color: #fff;
+  border: 1px solid #174992;
+  color: #174992;
+}
+
+.btn-sign-up {
+  background-color: #174992;
+  border: 1px solid #174992;
+  color: #fff !important;
+}
+

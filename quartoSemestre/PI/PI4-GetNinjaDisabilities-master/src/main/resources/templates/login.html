@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little hand - Login</title>
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet">
+
+<link href="/css/services.css" rel="stylesheet">
+<link href="/css/login.css" rel="stylesheet">
+<link href="/css/header.css" rel="stylesheet">
+<link href="/css/footer.css" rel="stylesheet">
+
+
+
+</head>
+
+<section th:replace="fragments/header :: navbar"></section>
+
+<body>
+
+	<main class="m-0 ">
+
+		<div class="container d-flex justify-content-center mt-5 ">
+
+
+			<section class="d-flex justify-content-center mb-5 center">
+
+				<section class="col-12 col-md-6">
+					<form method="POST" th:action="@{/login}">
+						<div th:if="${param.error}">
+		                    <div class="alert alert-danger">
+		                        Nome de usuário ou senha inválidos.
+		                    </div>
+		                </div>
+		                <div th:if="${param.logout}">
+		                    <div class="alert alert-info">
+		                        Você foi desconectado.
+		                    </div>
+		                </div>
+						<div class=" mb-5">
+							<h1>Faça login!</h1>
+						</div>
+						<div class="form-group">
+							<label for="email">E-mail</label> 
+							<input id="email" type="email" name="username" class="form-control"
+								placeholder="email@exemplo.com" required> 
+						</div>
+						<div class="form-group">
+							<label for="password">Senha</label> 
+							<input id="password" type="password" name="password" class="form-control"
+								placeholder="*******" required>
+						</div>
+						<div class="form-group form-check">
+							<input type="checkbox" class="form-check-input" id="checkConectado"> 
+							<label class="form-check-label" for="checkConectado">Quero continuar conectado</label>
+						</div>
+
+						<div class="form-group text-center mt-4">
+							<button type="submit" class="btn btn-login">Entrar</button>
+						</div>
+
+					</form>
+					
+					<div class="text-center mt-4">
+						<p class="m-0">Ainda não possui cadastro?</p>
+						<a th:href="@{#}" class="text-decoration-none text-muted">Clique aqui</a>
+					</div>
+				</section>
+
+				<section class="col-md-6" id="img-login">
+					<img src="/img/acessibility-2.png" class="img-fluid">
+				</section>
+			</section>
+		</div>
+	</main>
+
+</body>
+
+<hr>
+ <section th:replace="fragments/footer :: footer"></section>
+
+
+</html>

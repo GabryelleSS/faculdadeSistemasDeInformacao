@@ -1,0 +1,29 @@
+html {
+  --bg: #F5F5F5;
+  --color-text: #333;
+}
+
+body {
+  background-color: var(--bg);
+}
+
+.header-div, 
+.header__container,
+.header__container__nav {
+  background-color: var(--bg) !important;
+}
+
+.header__container__nav__list,
+.header__container__nav__accessibility a,
+.header__container__nav__accessibility button,
+.body__section__block-one__resume,
+.body__section__block-two__h3,
+.body__section__block-two__resume,
+.body__section__block-three__h3,
+.body__section__block-three__p,
+.container-info__scheduling__h4,
+.container-info__scheduling__p {
+  color: var(--color-text) !important;
+}
+
+

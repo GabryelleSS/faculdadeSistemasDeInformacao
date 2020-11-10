@@ -1,0 +1,12 @@
+.footer-content {
+	padding-top: 40px;
+}
+
+@media screen and (max-width: 380px) {
+	.footer-content {
+		padding-top: 10px;
+	}
+	#text-acompanhe {
+		display: none;
+	}
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little hand</title>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/header.css" rel="stylesheet">
+<link href="/css/home.css" rel="stylesheet">
+<link href="/css/footer.css" rel="stylesheet">
+<link href="/css/themeMode.css" rel="stylesheet">
+
+</head>
+
+<section th:replace="fragments/header :: navbar"></section>
+<body>
+	<section class="pt-4 pt-md-11">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-12 col-md-5 col-lg-6 order-md-2">
+
+					<!-- Image -->
+					<img src="/img/acessibility.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="..."
+						data-aos="fade-up" data-aos-delay="100">
+
+				</div>
+				<div class="col-12 col-md-7 col-lg-6 order-md-1" data-aos="fade-up">
+
+					<!-- Heading -->
+					<h1 id="logo" class="display-3 text-center text-md-left pb-3" style="font-size: 2.25rem;">Little
+						hand</h1>
+
+					<!-- Text -->
+					<p class="lead text-center text-md-left text-muted mb-6 mb-lg-8 body__section__block-one__resume">It was
+						popularised in the 1960s with the release of Letraset It is a long established fact that a
+						reader will be distracted by the readable content of a page when looking at its layout. The
+						point of using</p>
+
+					<!-- Buttons -->
+					<div class="text-center text-md-left pt-3">
+
+						<a class="btn btn-sign-up btn-menu">Cadastre-se</a> <a th:href="@{/login}"
+							class="btn btn-sign-in btn-menu">Entrar</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="pt-4 pt-md-11">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-12 col-md-5 col-lg-6 order-md-1">
+
+					<!-- Image -->
+					<img src="/img/acessibility-2.png" class="img-fluid mw-md-150 mw-lg-130 mb-6 mb-md-0" alt="..."
+						data-aos="fade-up" data-aos-delay="100">
+
+				</div>
+				<div class="col-12 col-md-7 col-lg-6 order-md-2" data-aos="fade-up">
+
+					<!-- Heading -->
+					<h3 class="display-3 text-center pb-3 body__section__block-two__h3" style="font-size: 2.25rem;">Slogan</h3>
+
+					<!-- Text -->
+					<p class="lead text-center text-md-left text-muted mb-6 mb-lg-8 body__section__block-two__resume" style="">It was
+						popularised in the 1960s with the release of Letraset It is a long established fact that a
+						reader will be distracted by the readable content of a page when looking at its layout. The
+						point of using</p>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container mt-5 mb-5" id="quemSomos">
+		<div class="text-center mb-5">
+			<h3 class="body__section__block-three__h3">O que é?</h3>
+			<p class="lead text-center text-muted mb-6 mb-lg-8 pt-3 pb-3 body__section__block-three__p" style="">It was popularised in
+				the 1960s with the release of Letraset It is a long established fact that a reader will</p>
+		</div>
+
+		<div class="container-info">
+			<div class="container-info__scheduling">
+				<div class="container-info__scheduling__circle-img">
+					<i class="fa fa-clock-o" aria-hidden="true"></i>
+				</div>
+				<h4 class="container-info__scheduling__h4">Agende um horário</h4>
+				<p class="container-info__scheduling__p">Procure por um serviço e agende um horário.</p>
+			</div>
+
+			<div class="container-info__scheduling">
+				<div class="container-info__scheduling__circle-img">
+					<i class="fa fa-weixin" aria-hidden="true"></i>
+				</div>
+				<h4 class="container-info__scheduling__h4">Feedback</h4>
+				<p class="container-info__scheduling__p">Encotre os melhores serviços através dos comentários de outros usuários.</p>
+			</div>
+
+			<div class="container-info__scheduling">
+				<div class="container-info__scheduling__circle-img">
+					<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+				</div>
+				<h4 class="container-info__scheduling__h4">Escolha o melhor</h4>
+				<p class="container-info__scheduling__p">Converse direto com eles.</p>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/js/home.js"></script>
+	<script src="/js/darkMode.js"></script>
+	
+</body>
+<hr>
+<section th:replace="fragments/footer :: footer"></section>
+</html>

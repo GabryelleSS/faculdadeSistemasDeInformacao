@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+            rel="stylesheet">
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/cadastro.css" rel="stylesheet">
+
+</head>
+
+<header>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Home</a>
+        </div>
+    </nav>
+</header>
+
+<body>
+
+<main>
+    <!-- Imagem -->
+    <div class="targeta"></div>
+
+    <!-- Form -->
+    <div class="container mt-5 form">
+        </br>
+        <div class="separator">
+            <h4>Sobre o serviço</h4>
+        </div>
+        </br>
+
+        <div style="margin: 10px">
+            <form>
+                <div class="form-row d-flex align-items-end">
+                    <div class="form-group col-md-6">
+                        <label for="nomeServico">Nome do serviço</label>
+                        <input type="text" class="form-control" id="nomeServico">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="tipoServico">Tipo de serviço</label>
+                        <input type="text" class="form-control" id="tipoServico">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sobreServico">Sobre o serviço</label>
+                    <textarea class="form-control" id="sobreServico" rows="4"></textarea>
+                </div>
+
+                <h4>Horários disponíveis</h4>
+
+                <div class="form-row d-flex align-items-end">
+                    <div class="form-group col-md-4">
+                        <label for="diasSemana">Dias da semana</label>
+                        <select id="diasSemana" class="form-control">
+                            <option selected>Selecione</option>
+                            <option>Domingo</option>
+                            <option>Segunda-feira</option>
+                            <option>Terça-feira</option>
+                            <option>Quarta-feira</option>
+                            <option>Quinta-feira</option>
+                            <option>Sexta-feira</option>
+                            <option>Sábado</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="das">Das</label>
+                        <input type="time" class="form-control" id="das">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="ate">Até</label>
+                        <input type=time class="form-control" id="ate">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-primary">Incluir</button>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <button type="submit" class="btn btn-primary">Finalizar</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+
+</html>

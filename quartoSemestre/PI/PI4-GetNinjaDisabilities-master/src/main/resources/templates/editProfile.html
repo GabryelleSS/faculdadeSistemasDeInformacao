@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nome do projeto - Editar perfil</title>
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet">
+
+<link href="/css/services.css" rel="stylesheet">
+
+<link href="/css/header.css" rel="stylesheet">
+
+<link href="/css/footer.css" rel="stylesheet">
+
+<style>
+footer {
+	background-image: url('/img/background-footer.png');
+}
+</style>
+
+</head>
+
+<section th:replace="fragments/header :: navbar"></section>
+
+<body>
+
+	<main class="m-0">
+
+		<div class="d-flex justify-content-center container">
+		
+		
+			<div class="col-3 bg-light">
+				<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-radius img-fluid mt-5" >
+				<h4 class="text-center pt-4">Alessa Robert</h4>
+			</div>
+
+			<form class="col-9 ml-2 pb-3">
+				<div class="form-group">
+					<label for="nome">Nome</label> 
+					<input id="name" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="sobrenome">Sobrenome</label> 
+					<input id="sobrenome" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="dataNascimento">Data de nascimento</label> 
+					<input id="dataNascimento" type="date" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="cpf">CPF</label> 
+					<input id="cpf" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="tags">Tags</label> 
+					<textarea  id="tags" class="form-control"></textarea>
+				</div>
+				
+				<div class="form-group">
+					<label for="senha">Senha</label> 
+					<input id="senha" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="endereco">Endereço</label> 
+					<input id="cpf" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="cidade">Cidade</label> 
+					<input id="cidade" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="estado">Estado</label> 
+					<input id="estado" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="celular">Celular</label> 
+					<input id="celular" type="text" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="telefone">Telefone</label> 
+					<input id="telefone" type="text" class="form-control">
+				</div>
+				<div class="d-flex justify-content-end">
+					<div class="form-group">
+						<button type="button" class="btn btn-primary">Salvar alterações</button>
+					</div>
+				</div>
+			</form>
+
+		</div>
+
+
+	</main>
+
+</body>
+
+<hr>
+<section th:replace="fragments/footer :: footer"></section>
+
+</html>

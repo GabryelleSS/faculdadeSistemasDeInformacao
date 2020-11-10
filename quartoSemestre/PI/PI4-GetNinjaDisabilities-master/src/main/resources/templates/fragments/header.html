@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<div th:fragment="navbar">
+
+
+	<div style="border-bottom: 1px solid rgba(0, 0, 0, .1);">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light bg-white container"
+				style="padding: 1.25rem 0; font-size: 1.10rem;">
+				<a class="navbar-brand" th:href="@{/}" style="font-size: 1.5rem;" id="logo">Little hand</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+					aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarText" >
+					<ul class="navbar-nav mr-auto" style="font-size: 1.1rem;">
+						<li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link scroll" href="#quemSomos">O que é?</a></li>
+						<li sec:authorize="hasAuthority('USER')" class="nav-item"><a class="nav-link" th:href="@{/services}">Serviços</a></li>
+						<li sec:authorize="hasAuthority('PROVIDER')" class="nav-item"><a class="nav-link" th:href="@{/services}">Meus Serviços</a></li>
+					</ul>
+
+
+
+					<div class="menu-header">
+						<a>Acessibilidade</a>
+
+						<button id="decrease-font">A-</button>
+						<button id="increase-font">A+</button>
+
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="customSwitch1"> <label
+								class="custom-control-label" for="customSwitch1"></label>
+						</div>
+					</div>
+					<div>
+						<ul class="navbar-nav mr-auto" style="font-size: 1.1rem;">
+							<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function() {
+			var elementBody = document.querySelector('body');
+			var elementBtnIncreaseFont = document
+					.getElementById('increase-font');
+			var elementBtnDecreaseFont = document
+					.getElementById('decrease-font');
+			// Padrão de tamanho, equivale a 100% do valor definido no Body
+			var fontSize = 100;
+			// Valor de incremento ou decremento, equivale a 10% do valor do Body
+			var increaseDecrease = 10;
+
+			// Evento de click para aumentar a fonte
+			elementBtnIncreaseFont.addEventListener('click', function(event) {
+				fontSize = fontSize + increaseDecrease;
+				elementBody.style.fontSize = fontSize + '%';
+			});
+
+			// Evento de click para diminuir a fonte
+			elementBtnDecreaseFont.addEventListener('click', function(event) {
+				fontSize = fontSize - increaseDecrease;
+				elementBody.style.fontSize = fontSize + '%';
+			});
+		}
+	</script>
+</div>
+</html>

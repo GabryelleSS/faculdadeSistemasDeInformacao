@@ -1,0 +1,36 @@
+.container-info {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 20%;
+}
+
+.container-info__scheduling {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 30px;
+}
+
+.container-info__scheduling div {
+  width: 80px;
+  height: 80px;
+  background: #174992;
+  border-radius: 50px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: #f9bf3b;
+  font-size: 30px;
+}
+
+.container-info__scheduling h4 {
+  font-size: 16px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.container-info__scheduling span {
+  font-size: 14px;
+}
+
